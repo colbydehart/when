@@ -1,0 +1,31 @@
+{
+  "name": "when",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Colby DeHart",
+  "license": "MIT",
+  "devDependencies": {
+    "node-neat": "~1.4.2",
+    "gulp-load-plugins": "~0.8.0",
+    "gulp": "~3.8.10",
+    "gulp-karma": "0.0.4",
+    "gulp-concat": "~2.4.2",
+    "gulp-webserver": "~0.9.0",
+    "gulp-protractor": "0.0.12",
+    "gulp-plumber": "~0.6.6",
+    "karma": "~0.12.28",
+    "gulp-sass": "~1.2.4",
+    "gulp-uglify": "~1.0.2",
+    "mocha": "~2.0.1",
+    "karma-mocha": "~0.1.10",
+    "chai": "~1.10.0",
+    "karma-chai": "~0.1.0",
+    "sinon": "~1.12.2",
+    "karma-sinon": "~1.0.4",
+    "karma-phantomjs-launcher": "~0.1.4"
+  }
+}

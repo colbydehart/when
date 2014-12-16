@@ -1,0 +1,17 @@
+{
+  "name": "when",
+  "version": "0.0.0",
+  "authors": [
+    "Colby DeHart <colbydehart@gmail.com>"
+  ],
+  "description": "Group event management made simple.",
+  "main": "app/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
