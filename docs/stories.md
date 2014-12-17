@@ -1,8 +1,26 @@
+#Register
+###As a `Guest`
+###In order to `Manage events on the site`
+###I want to `Make an account or log in`
+##Acceptable Criteria:
+- On the homepage if I am not logged in, the about will be shown with a
+  'get started' button that leads to registration. Register and Login 
+  will also be in the corner of the navbar.
+- Clicking on either login or register, the user will be taken to a form
+  requiring email and password. If the user only enters email, a 'forgot
+  password' button will appear.
+- After successful login, the user will be redirected to their profile 
+  page where they can add a calendar
+- After a failed login, the user will be redirected back to the login 
+  form with an error alert at the top of the page with a link to 
+  register if they do not have an account.
+
 #Add Calendar
 ###As a `User`
 ###In order to `See when friends are available`
 ###I want to `Create a new event`
 ##Acceptable Criteria:
+- Form at bottom of page to add a new calendar
 - Event must have a name > 3 characters
 - Event must have a length (selection of all day or not. Stretch
   goals would be to set variable hours and multi-day events)
@@ -14,6 +32,20 @@
   so that they can share with friends. stretch goal would be to make a 
   list of emails, and automatically email each participant, then email user
   after they all update their availability.
+- After clicking a 'thanks' button on the modal, they will be taken back to their profile
+
+#Manage Events
+###As a `User`
+###In order to `Manage my event`
+###I want to `Manipulate events on the profile page`
+##Acceptable Criteria:
+- The users profile will have the afforementioned form at the bottom of the page.
+- Above this will be a table of all the events the user has created. If the stretch
+  goal of making a list of participant is met, the events that have been filled out
+  by each participant would be highlighted and at the top of the table.
+- This table will contain the name of each event, a link to copy the shareable calendar, 
+  A button to view the results of the event and available days as well as edit the calendar
+  , and a button to delete the calendar.
 
 #Edit a Calendar
 ###As a `Guest/User`

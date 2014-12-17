@@ -1,15 +1,1 @@
-(function() {
-  angular.module('when', []).controller('MainController', [
-    '$location', function($location) {
-      var vm;
-      vm = this;
-      return vm.name = 'Colby';
-    }
-  ]);
-
-}).call(this);
-
-(function() {
-  angular.module('when', ['ngRoute']);
-
-}).call(this);
+angular.module("home",["ngRoute"]).config(["$routeProvider",function(o){o.when("/",{templateUrl:"views/home.html",controller:"HomeController",controllerAs:"vm"})}]).controller("HomeController",["$location","$scope",function(o,e){e.name="Colby"}]),angular.module("when",["ngRoute","home"]).config(["$routeProvider",function(o){o.otherwise({redirectTo:"/"})}]);
