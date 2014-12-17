@@ -10,5 +10,8 @@ angular.module('home', ['ngRoute'])
 }])  
 
 .controller('HomeController', ['$location', '$scope', function($location, $scope){
-  $scope.name = 'Colby';
+  $scope.panelText = [
+    'for us to grab dinner',
+    'to go camping'
+  ];
 }]);

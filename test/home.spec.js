@@ -7,7 +7,7 @@ describe("HomeController", function(){
     ctrl = $controller('HomeController', {$scope: scope});
   }));
 
-  it("Should be instantiated", function(){
-    scope.name.should.equal('Colby');
+  it("Should have panelText", function(){
+    scope.panelText.should.have.length(2);
   });
 });

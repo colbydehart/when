@@ -9,7 +9,6 @@
   "author": "Colby DeHart",
   "license": "MIT",
   "devDependencies": {
-    "node-neat": "~1.4.2",
     "gulp-load-plugins": "~0.8.0",
     "gulp": "~3.8.10",
     "gulp-concat": "~2.4.2",

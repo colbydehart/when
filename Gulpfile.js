@@ -14,9 +14,7 @@ gulp.task('js', function() {
 gulp.task('sass', function() {
   gulp.src('sass/main.scss')
     .pipe($.plumber())
-    .pipe($.sass({
-      includePaths : require('node-neat').includePaths
-    }))
+    .pipe($.sass())
     .pipe(gulp.dest('app/css/'));
 });
 
@@ -28,7 +26,7 @@ gulp.task('build',['js', 'sass'], function() {
 //Default
 gulp.task('default', ['js', 'sass'], function() {
   gulp.watch('js/*.js', ['js']);
-  gulp.watch('sass/*.scss', ['sass']);
+  gulp.watch('sass/**/*.scss', ['sass']);
   gulp.src('app/')
     .pipe($.webserver({
       livereload : true,

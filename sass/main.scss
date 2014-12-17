@@ -1,6 +1,6 @@
-@import 'bourbon';
-@import 'neat';
+@import 'bourbon/bourbon';
+@import 'base/base.scss';
+@import 'neat/neat';
 
-*{
-  background-color: #ffa;
-}
+
+@import 'layout';
