@@ -37,7 +37,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
                      function(  $location,   $routeParams,   $scope,   auth){
 
   $scope.method = $location.path().replace('/','');
-  if ($scope.method === 'logout'){
+  if ($scope.method === 'logout' && !auth.$getAuth()){
     auth.logout();
     $location.path('/');
   }
@@ -166,11 +166,6 @@ angular.module('when',
     $routeProvider.otherwise({redirectTo: '/'});
   }])
   .controller('HeaderController', ['auth', '$rootScope', function(auth, $rootScope) {
-    var vm = this;
-    vm.loggedIn = auth.authenticate();
-    $rootScope.$watch('user', function() {
-      vm.loggedIn = auth.authenticate();
-    });
   }]);
 }());
 
@@ -184,32 +179,31 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'authFactory'])
   .when('/events', {
     templateUrl : 'views/profile.html',
     controller : 'ProfileController',
-    controllerAs : 'vm'
+    controllerAs : 'vm',
+    resolve : {
+      'currentUser' : ['auth', function(auth){
+        auth.$requireAuth();
+      }]
+    }
   });
 }])  
 
-.controller('ProfileController', ['$location', 'auth', '$scope', 'data', 
-                          function($location,   auth,   $scope,   data){
+.controller('ProfileController', ['$location', 'currentUser', '$scope', 'data', 
+                          function($location,   currentUser,   $scope,   data){
   
-  if (!auth.authenticate())
+  if(!currentUser)
     $location.path('/');
   $scope.events = {};
+
   data.getEventsForUser(function(data){
-    $scope.events = data || {};
   });
 
   $scope.addEvent = function(){
-    data.add($scope.newEvent, function(id){
-      $location.path('event/' + id);
-      $scope.$apply();
-    });
   };
 
   $scope.removeEvent = function(id) {
-    data.remove(id, function(){
-      delete $scope.events.id;
-    });
   };
+
 }]);
 
 }());

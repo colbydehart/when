@@ -26,7 +26,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
                      function(  $location,   $routeParams,   $scope,   auth){
 
   $scope.method = $location.path().replace('/','');
-  if ($scope.method === 'logout'){
+  if ($scope.method === 'logout' && !auth.$getAuth()){
     auth.logout();
     $location.path('/');
   }

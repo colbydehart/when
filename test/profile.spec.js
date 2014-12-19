@@ -1,17 +1,10 @@
 describe("ProfileController", function(){
   beforeEach(module('profile'));
 
-  var ctrl, scope, getEventsSpy;
-  beforeEach(inject(function($controller, $rootScope, data){
+  var ctrl, scope, user;
+  beforeEach(inject(function($controller, $rootScope){
     scope = $rootScope.$new();
-    getEventsSpy = sinon.stub(data, 'getEventsForUser', function(cb){
-      cb({
-        'abcd' : 'Go Camping',
-        'efgh' : 'Fancy Dinner'
-      });
-    });
-
-    ctrl = $controller('ProfileController', {$scope: scope});
+    ctrl = $controller('ProfileController', {$scope: scope, currentUser : {uid:'simplelogin:2'} });
   }));
 
   it("Should exist", function(){
