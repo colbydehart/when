@@ -1,0 +1,18 @@
+<div id="auth">
+  <div class="warning" ng-if="error">{{error}}</div>
+  <form ng-submit="submit()">
+    <div class="input">
+      <label>Email</label>
+      <input type="email" ng-model='user.email' required>
+    </div>
+    <div class="input">
+      <label>Password</label>
+      <input type="password" ng-model='user.password' required>
+    </div>
+    <div class="input" ng-if="method === 'register'">
+      <label>Repeat password</label>
+      <input type="password" ng-model='passwordRepeat' required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

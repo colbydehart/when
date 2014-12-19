@@ -6,7 +6,7 @@ gulp.task('js', function() {
   gulp.src('js/*.js')
     .pipe($.plumber())
     .pipe($.concat('app.js'))
-    .pipe($.uglify())
+    // .pipe($.uglify())
     .pipe(gulp.dest('app/js/'));
 });
 

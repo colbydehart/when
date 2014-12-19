@@ -1,3 +1,40 @@
 body{
+  margin: 0;
+}
+
+header{
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top:0;
+  background-color: $blue;
+  padding: 15px;
+
+  nav{
+    color:white;
+    display: inline-block;
+    float:right;
+  }
+
+  h3{
+    color: white;
+    display: inline-block;
+  } 
+}
+
+footer{
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom:0;
+  color: $light-green;
+  text-align: center;
+  background-color: $dark-gray;
+  padding: 15px;
+  font-size: 0.8rem;
+}
+
+.content{
+  margin-top: 120px;
   @include outer-container;
 }

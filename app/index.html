@@ -7,10 +7,11 @@
 </head>
 <body>
   <header ng-include="'views/includes/header.html'"></header>
-  <div ng-view></div>
+  <div class="content" ng-view></div>
   <footer ng-include="'views/includes/footer.html'"></footer>
 </body>
 <script src="vendor/lodash/dist/lodash.min.js"></script>
+<script src="vendor/firebase/firebase.js"></script>
 <script src="vendor/angular/angular.min.js"></script>
 <script src="vendor/angular-route/angular-route.min.js"></script>
 <script src="js/app.js"></script>

@@ -1,0 +1,18 @@
+<h2>Your Events</h2>
+
+<table class='table-borders'>
+  <tr ng-repeat="(key, event) in events" >
+    <td>{{event}}</td>
+    <td></td>
+    <td><a href="#/event/{{key}}"><button>Link</button></a></td>
+    <td><a href="#/event/{{key}}/edit"><button>Edit</button></a></td>
+  </tr>
+</table>
+
+<h3>Add a new event</h3>
+<!-- TODO add angular style validation -->
+<form name="add" ng-submit="addEvent()">
+  <label>Name</label>
+  <input type="text" ng-model="newEvent" required>
+  <button type="submit">Add</button>
+</form>

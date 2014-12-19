@@ -1,0 +1,34 @@
+.show{
+  .highlight{
+    color: $blue;
+  }
+  width:80%;
+  margin:auto;
+  .dayCell{
+    display: inline-block;
+    width: calc(100% / 7) ;
+    font-weight: bold;
+  }
+  .calCell{
+    margin: 5px;
+    height:80px;
+    border-radius: 15px;
+    overflow:hidden;
+    border:1px solid $dark-gray;
+    .date{
+      position: absolute;
+      top:-1em;
+    }
+    .noon{
+      border-top:1px solid $dark-gray;
+      border-bottom:1px solid $dark-gray;
+    }
+    .morning, .noon, .night{
+      background-color: #dfa;
+      height: 33%;
+    }
+    .unavailable{
+      background-color: lighten($blue, 30);
+    }
+  }
+}

@@ -10,8 +10,16 @@ module.exports = function(config) {
     frameworks: ['mocha', 'sinon-chai'],
 
 
+    client : {
+      captureConsole : true,
+      mocha : {
+        timeout : 6000
+      }
+    },
     // list of files / patterns to load in the browser
     files: [
+      'app/vendor/lodash/dist/lodash.min.js',
+      'app/vendor/firebase/firebase.js',
       'app/vendor/angular/angular.js',
       'app/vendor/angular-route/angular-route.min.js',
       'app/vendor/angular-mocks/angular-mocks.js',
@@ -27,20 +35,11 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'app/js/*.js': ['coverage']
-    },
-
-    coverageReporter: {
-      type : 'text-summary',
-      dir : '/dev/null'
-    },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['nyan'],
 
 
     // web server port
@@ -62,7 +61,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode

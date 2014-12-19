@@ -1,3 +1,6 @@
+;(function () {
+'use strict';
+
 angular.module('home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider){
@@ -15,3 +18,5 @@ angular.module('home', ['ngRoute'])
     'to go camping'
   ];
 }]);
+
+}());

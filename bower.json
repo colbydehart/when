@@ -14,7 +14,9 @@
     "test",
     "tests"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "firebase": "~2.0.6"
+  },
   "resolutions": {
     "angular": "1.3.7"
   },

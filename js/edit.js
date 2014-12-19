@@ -1,13 +1,18 @@
+;(function () {
+'use strict';
+
 angular.module('edit', ['ngRoute'])
 
-.config(['$routeProvider', function($routeprovider){
-  $routeprovider
+.config(['$routeProvider', function($routeProvider){
+  $routeProvider
   .when('/event/:id/edit', {
-    templateurl : 'views/edit.html',
+    templateUrl : 'views/edit.html',
     controller : 'EditController',
-    controlleras : 'vm'
+    controllerAs : 'vm'
   });
 }])  
 
 .controller('EditController', ['$location', '$scope', function($location, $scope){
 }]);
+//End Iife
+}());
