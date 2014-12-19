@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "start" : "gulp",
+    "deploy" : "s3-cli sync --delete-removed app/ s3://when.colbydehart.com/"
   },
   "author": "Colby DeHart",
   "license": "MIT",

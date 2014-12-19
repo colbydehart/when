@@ -21,6 +21,7 @@ module.exports = function(config) {
       'app/vendor/lodash/dist/lodash.min.js',
       'app/vendor/firebase/firebase.js',
       'app/vendor/angular/angular.js',
+      'app/vendor/angularfire/dist/angularfire.min.js',
       'app/vendor/angular-route/angular-route.min.js',
       'app/vendor/angular-mocks/angular-mocks.js',
       'app/js/*.js',

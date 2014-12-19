@@ -1,26 +1,10 @@
 ;(function () {
 'use strict';
 
-angular.module('authFactory', [])
-.factory('auth', ['$location', '$rootScope', function($location, $rootScope) {
+angular.module('authFactory', ['firebase'])
+.factory('auth', ['$firebaseAuth', function($firebaseAuth) {
   var ref = new Firebase('https://when1021.firebaseio.com/');
-  return {
-    login: function(usr, cb) {
-      ref.authWithPassword(usr, function(err, authData){
-        if(authData) {$rootScope.user = authData;}
-        cb(err,authData);
-      });
-    },
-    logout : function() {
-      ref.unauth();
-      $rootScope.user = null;
-    },
-    authenticate : function(){
-      var authCred = ref.getAuth();
-      $rootScope.user = authCred;
-      return authCred;
-    }
-  };
+  return $firebaseAuth(ref);
 }]);
 
 }());
@@ -81,9 +65,9 @@ angular.module('auth', ['ngRoute', 'authFactory'])
 ;(function () {
 'use strict';
 
-angular.module('dataFactory', ['authFactory'])
+angular.module('dataFactory', ['authFactory', 'firebase'])
 
-.factory('data', ['$location', '$rootScope', '$http', 'auth', function($location, $rootScope, $http, auth){
+.factory('data', ['$location', '$rootScope', 'auth', '$firebase', function($location, $rootScope, auth, $firebase){
 
   var url = 'https://when1021.firebaseio.com/';
   var query = function(){
@@ -94,32 +78,32 @@ angular.module('dataFactory', ['authFactory'])
     //getEventsForUser: returns event names and ids
     //for currently logged in user
     getEventsForUser : function(cb){
-      $http.get(url + 'users/' + $rootScope.user.uid + '.json' + query())
-        .success(function(data){
-          cb(data);
-        });
-        //TODO handle this failure
+      // $http.get(url + 'users/' + $rootScope.user.uid + '.json' + query())
+      //   .success(function(data){
+      //     cb(data);
+      //   });
+      //   //TODO handle this failure
     },
     //add: adds a new event to the logged in user's 
     //events
     add : function(name, cb){
-      $http.post(url + 'events.json', {name: name, owner: $rootScope.user.uid})
-      .success(function(data){
-        var event = {},
-            id = data.name;
-        event[id] = name;
-        $http.patch(url + 'users/' + $rootScope.user.uid + '.json' + query(), event)
-        .success(function(data){
-          cb(id);
-        });
-      });
-        //TODO handle this failure
+      // $http.post(url + 'events.json', {name: name, owner: $rootScope.user.uid})
+      // .success(function(data){
+      //   var event = {},
+      //       id = data.name;
+      //   event[id] = name;
+      //   $http.patch(url + 'users/' + $rootScope.user.uid + '.json' + query(), event)
+      //   .success(function(data){
+      //     cb(id);
+      //   });
+      // });
+      //   //TODO handle this failure
     },
     get : function(id, cb){
-      $http.get(url + 'events/' + id + '.json')
-      .success(function(data){
-        cb(data);
-      });
+      // $http.get(url + 'events/' + id + '.json')
+      // .success(function(data){
+      //   cb(data);
+      // });
     }
   };
 }]);
