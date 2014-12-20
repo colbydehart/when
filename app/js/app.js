@@ -38,25 +38,41 @@ angular.module('auth', ['ngRoute', 'authFactory'])
                      function(  $location,   $routeParams,   $scope,   auth){
 
   $scope.method = $location.path().replace('/','');
-  if ($scope.method === 'logout' && !auth.$getAuth()){
-    auth.logout();
+  $scope.matching = true;
+  //TODO more elegant error flashing
+  $scope.error =  $location.search().error;
+  //Logout
+  if ($scope.method === 'logout'){
+    auth.$unauth();
     $location.path('/');
   }
-  $scope.error =  $location.search().error;
-  //TODO more elegant error flashing
 
   $scope.submit = function(){
     if ($scope.method === 'login') {
-      auth.login($scope.user, function(err, auth){
-        if(!err)
+      auth.$authWithPassword($scope.user)
+      .then(function(authData){
           $location.path('/events');
-        else
-          $location.path('/login').search('error', err);
+      })
+      .catch(function(){
+        $location.path('/login').search('error', err);
         $scope.$apply();
       });
     }
     if ($scope.method === 'register'){
-      //TODO handle registration
+      if($scope.passwordRepeat !== $scope.user.password){
+        $scope.matching = false;
+      } else {
+        auth.$createUser($scope.user.email, $scope.user.password)
+        .then(function() {
+          return auth.$authWithPassword($scope.user); 
+        })
+        .then(function() {
+          $location.path('/events');
+        })
+        .catch(function(error) {
+          $location.path('/register').search('error', error);
+        });
+      }
     }
   };
 
@@ -174,9 +190,9 @@ angular.module('when',
         $location.path('/');
     });
   }])
-  .controller('HeaderController', ['auth', function(auth) {
+  .controller('HeaderController', ['$rootScope', function($rootScope) {
     var vm = this;
-    vm.auth = auth;
+    vm.user = $rootScope.user;
   }]);
 }());
 

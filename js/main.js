@@ -19,8 +19,8 @@ angular.module('when',
         $location.path('/');
     });
   }])
-  .controller('HeaderController', ['auth', function(auth) {
+  .controller('HeaderController', ['$rootScope', function($rootScope) {
     var vm = this;
-    vm.auth = auth;
+    vm.user = $rootScope.user;
   }]);
 }());

@@ -1,6 +1,8 @@
 <div id="auth">
   <div class="warning" ng-if="error">{{error}}</div>
-  <form ng-submit="submit()">
+  <form ng-submit="authForm.$valid && submit()"
+        name='authForm'
+        novalidate>
     <div class="input">
       <label>Email</label>
       <input type="email" ng-model='user.email' required>
@@ -9,10 +11,11 @@
       <label>Password</label>
       <input type="password" ng-model='user.password' required>
     </div>
-    <div class="input" ng-if="method === 'register'">
+    <div class="input" ng-show="method === 'register'">
       <label>Repeat password</label>
-      <input type="password" ng-model='passwordRepeat' required>
+      <input type="password" ng-model='passwordRepeat'>
+      <span ng-show="!matching">Passwords must match</span>
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" ng-class="{'disabled' : authForm.$valid }">Submit</button>
   </form>
 </div>
