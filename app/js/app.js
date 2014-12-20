@@ -29,7 +29,8 @@ angular.module('auth', ['ngRoute', 'authFactory'])
   .when('/logout', {
     template : '',
     controller : 'AuthController',
-    controllerAs : 'vm'
+    controllerAs : 'vm',
+    private: true
   });
 }])  
 
@@ -119,7 +120,8 @@ angular.module('edit', ['ngRoute'])
   .when('/event/:id/edit', {
     templateUrl : 'views/edit.html',
     controller : 'EditController',
-    controllerAs : 'vm'
+    controllerAs : 'vm',
+    private : true
   });
 }])  
 
@@ -165,7 +167,16 @@ angular.module('when',
   ).config(['$routeProvider', function($routeProvider){
     $routeProvider.otherwise({redirectTo: '/'});
   }])
-  .controller('HeaderController', ['auth', '$rootScope', function(auth, $rootScope) {
+  .run(['$rootScope', 'auth', '$location', function($rootScope, auth, $location) {
+    $rootScope.$on('$routeChangeStart', function(event, next, prior) {
+      $rootScope.user = auth.$getAuth();
+      if(next.$$route && next.$$route.private && !$rootScope.user)
+        $location.path('/');
+    });
+  }])
+  .controller('HeaderController', ['auth', function(auth) {
+    var vm = this;
+    vm.auth = auth;
   }]);
 }());
 
@@ -180,11 +191,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'authFactory'])
     templateUrl : 'views/profile.html',
     controller : 'ProfileController',
     controllerAs : 'vm',
-    resolve : {
-      'currentUser' : ['auth', function(auth){
-        auth.$requireAuth();
-      }]
-    }
+    private : true
   });
 }])  
 

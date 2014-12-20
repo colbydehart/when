@@ -9,11 +9,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'authFactory'])
     templateUrl : 'views/profile.html',
     controller : 'ProfileController',
     controllerAs : 'vm',
-    resolve : {
-      'currentUser' : ['auth', function(auth){
-        auth.$requireAuth();
-      }]
-    }
+    private : true
   });
 }])  
 

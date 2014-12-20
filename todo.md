@@ -9,4 +9,3 @@
 #Current task
 - js/profile.js
 - js/auth.js
-- js/main.js (header)

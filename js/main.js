@@ -12,6 +12,15 @@ angular.module('when',
   ).config(['$routeProvider', function($routeProvider){
     $routeProvider.otherwise({redirectTo: '/'});
   }])
-  .controller('HeaderController', ['auth', '$rootScope', function(auth, $rootScope) {
+  .run(['$rootScope', 'auth', '$location', function($rootScope, auth, $location) {
+    $rootScope.$on('$routeChangeStart', function(event, next, prior) {
+      $rootScope.user = auth.$getAuth();
+      if(next.$$route && next.$$route.private && !$rootScope.user)
+        $location.path('/');
+    });
+  }])
+  .controller('HeaderController', ['auth', function(auth) {
+    var vm = this;
+    vm.auth = auth;
   }]);
 }());

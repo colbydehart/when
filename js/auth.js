@@ -18,7 +18,8 @@ angular.module('auth', ['ngRoute', 'authFactory'])
   .when('/logout', {
     template : '',
     controller : 'AuthController',
-    controllerAs : 'vm'
+    controllerAs : 'vm',
+    private: true
   });
 }])  
 

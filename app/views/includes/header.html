@@ -1,6 +1,6 @@
 <navbar ng-controller="HeaderController as vm">
   <a href="#/events" id="logo"><h3> When </h3></a>
-  <nav ng-if="!vm.loggedIn"> <a href="#/login"><button>login</button></a> </nav>
-  <nav ng-if="!vm.loggedIn"> <a href="#/register"><button>register</button></a> </nav>
-  <nav ng-if="vm.loggedIn"> <a href="#/logout"><button>logout</button></a> </nav>
+  <nav ng-if="!vm.auth.$getAuth()"> <a href="#/login"><button>login</button></a> </nav>
+  <nav ng-if="!vm.auth.$getAuth()"> <a href="#/register"><button>register</button></a> </nav>
+  <nav ng-if="vm.auth.$getAuth()"> <a href="#/logout"><button>logout</button></a> </nav>
 </navbar>

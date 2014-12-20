@@ -8,7 +8,8 @@ angular.module('edit', ['ngRoute'])
   .when('/event/:id/edit', {
     templateUrl : 'views/edit.html',
     controller : 'EditController',
-    controllerAs : 'vm'
+    controllerAs : 'vm',
+    private : true
   });
 }])  
 
