@@ -15,9 +15,8 @@ angular.module('show', ['ngRoute', 'dataFactory'])
 .controller('ShowController', ['$location', '$scope', 'data', '$routeParams', 
                       function( $location,   $scope,   data,   $routeParams){
   var id = $routeParams.id;
-  data.get(id, function(data) {
-    $scope.event = data;
-  });
+  data.get(id).$bindTo($scope, 'event');
+
   //Replace after calendars are made
   //TODO make calendars work here
   var mockCal = new Array(35);

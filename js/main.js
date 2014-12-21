@@ -15,6 +15,7 @@ angular.module('when',
   .run(['$rootScope', 'auth', '$location', function($rootScope, auth, $location) {
     $rootScope.$on('$routeChangeStart', function(event, next, prior) {
       $rootScope.user = auth.$getAuth();
+      console.log(next.$$route);
       if(next.$$route && next.$$route.private && !$rootScope.user)
         $location.path('/');
     });

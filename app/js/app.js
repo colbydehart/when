@@ -84,7 +84,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
 
 angular.module('dataFactory', ['authFactory', 'firebase'])
 
-.factory('data', ['$location', '$rootScope', 'auth', '$firebase', function($location, $rootScope, auth, $firebase){
+.factory('data', ['$rootScope', '$firebase', function ($rootScope, $firebase){
 
   var url = 'https://when1021.firebaseio.com/';
   var query = function(){
@@ -92,36 +92,40 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
   };
 
   return {
-    //getEventsForUser: returns event names and ids
-    //for currently logged in user
+    //GET_EVENTS_FOR_USER: gets all events for
+    //   currently logged in user.
     getEventsForUser : function(cb){
-      // $http.get(url + 'users/' + $rootScope.user.uid + '.json' + query())
-      //   .success(function(data){
-      //     cb(data);
-      //   });
-      //   //TODO handle this failure
+      var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
+      return sync.$asObject();
     },
-    //add: adds a new event to the logged in user's 
-    //events
-    add : function(name, cb){
-      // $http.post(url + 'events.json', {name: name, owner: $rootScope.user.uid})
-      // .success(function(data){
-      //   var event = {},
-      //       id = data.name;
-      //   event[id] = name;
-      //   $http.patch(url + 'users/' + $rootScope.user.uid + '.json' + query(), event)
-      //   .success(function(data){
-      //     cb(id);
-      //   });
-      // });
-      //   //TODO handle this failure
+    //ADD: adds a new event to the 
+    //     logged in user's events
+    add : function(name,cb){
+      var eventsSync = $firebase(new Firebase(url+'events')),
+          userSync = $firebase(new Firebase(url+'users/'+$rootScope.user.uid)),
+          id;
+      //Push in the new event into the 
+      //     'events' key on fb
+      eventsSync.$push({name: name, owner : $rootScope.user.uid})
+      .then(function(ref) {
+        id = ref.key();
+        var event = {};
+        event[id] = name;
+        //Then add that event's id to the 
+        //     current users events on fb
+        return userSync.$update(event);
+      })
+      .then(function(ref) {
+        cb(id);
+      });
     },
+    //GET: gets a single event from a provided id
     get : function(id, cb){
-      // $http.get(url + 'events/' + id + '.json')
-      // .success(function(data){
-      //   cb(data);
-      // });
-    }
+      var sync = $firebase(new Firebase(url+'events/'+id));
+      return sync.$asObject();
+    },
+    remove : '',
+    update : ''
   };
 }]);
 }());
@@ -186,6 +190,7 @@ angular.module('when',
   .run(['$rootScope', 'auth', '$location', function($rootScope, auth, $location) {
     $rootScope.$on('$routeChangeStart', function(event, next, prior) {
       $rootScope.user = auth.$getAuth();
+      console.log(next.$$route);
       if(next.$$route && next.$$route.private && !$rootScope.user)
         $location.path('/');
     });
@@ -199,29 +204,28 @@ angular.module('when',
 ;(function () {
 'use strict';
 
-angular.module('profile', ['ngRoute', 'dataFactory', 'authFactory'])
+angular.module('profile', ['ngRoute', 'dataFactory' ])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
   .when('/events', {
     templateUrl : 'views/profile.html',
     controller : 'ProfileController',
-    controllerAs : 'vm',
+    controllerAs : 'profile',
     private : true
   });
 }])  
 
-.controller('ProfileController', ['$location', 'currentUser', '$scope', 'data', 
-                          function($location,   currentUser,   $scope,   data){
+.controller('ProfileController', ['$location', '$scope', 'data', function($location, $scope, data){
+  var vm = this;
+  this.message = 'hello';
   
-  if(!currentUser)
-    $location.path('/');
-  $scope.events = {};
-
-  data.getEventsForUser(function(data){
-  });
+  data.getEventsForUser().$bindTo($scope, 'events');
 
   $scope.addEvent = function(){
+    var added = data.add($scope.newEvent, function(id) {
+      $location.path('/event/' + id);
+    });
   };
 
   $scope.removeEvent = function(id) {
@@ -248,9 +252,8 @@ angular.module('show', ['ngRoute', 'dataFactory'])
 .controller('ShowController', ['$location', '$scope', 'data', '$routeParams', 
                       function( $location,   $scope,   data,   $routeParams){
   var id = $routeParams.id;
-  data.get(id, function(data) {
-    $scope.event = data;
-  });
+  data.get(id).$bindTo($scope, 'event');
+
   //Replace after calendars are made
   //TODO make calendars work here
   var mockCal = new Array(35);

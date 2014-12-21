@@ -3,7 +3,7 @@
 
 angular.module('dataFactory', ['authFactory', 'firebase'])
 
-.factory('data', ['$location', '$rootScope', 'auth', '$firebase', function($location, $rootScope, auth, $firebase){
+.factory('data', ['$rootScope', '$firebase', function ($rootScope, $firebase){
 
   var url = 'https://when1021.firebaseio.com/';
   var query = function(){
@@ -11,36 +11,40 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
   };
 
   return {
-    //getEventsForUser: returns event names and ids
-    //for currently logged in user
+    //GET_EVENTS_FOR_USER: gets all events for
+    //   currently logged in user.
     getEventsForUser : function(cb){
-      // $http.get(url + 'users/' + $rootScope.user.uid + '.json' + query())
-      //   .success(function(data){
-      //     cb(data);
-      //   });
-      //   //TODO handle this failure
+      var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
+      return sync.$asObject();
     },
-    //add: adds a new event to the logged in user's 
-    //events
-    add : function(name, cb){
-      // $http.post(url + 'events.json', {name: name, owner: $rootScope.user.uid})
-      // .success(function(data){
-      //   var event = {},
-      //       id = data.name;
-      //   event[id] = name;
-      //   $http.patch(url + 'users/' + $rootScope.user.uid + '.json' + query(), event)
-      //   .success(function(data){
-      //     cb(id);
-      //   });
-      // });
-      //   //TODO handle this failure
+    //ADD: adds a new event to the 
+    //     logged in user's events
+    add : function(name,cb){
+      var eventsSync = $firebase(new Firebase(url+'events')),
+          userSync = $firebase(new Firebase(url+'users/'+$rootScope.user.uid)),
+          id;
+      //Push in the new event into the 
+      //     'events' key on fb
+      eventsSync.$push({name: name, owner : $rootScope.user.uid})
+      .then(function(ref) {
+        id = ref.key();
+        var event = {};
+        event[id] = name;
+        //Then add that event's id to the 
+        //     current users events on fb
+        return userSync.$update(event);
+      })
+      .then(function(ref) {
+        cb(id);
+      });
     },
+    //GET: gets a single event from a provided id
     get : function(id, cb){
-      // $http.get(url + 'events/' + id + '.json')
-      // .success(function(data){
-      //   cb(data);
-      // });
-    }
+      var sync = $firebase(new Firebase(url+'events/'+id));
+      return sync.$asObject();
+    },
+    remove : '',
+    update : ''
   };
 }]);
 }());

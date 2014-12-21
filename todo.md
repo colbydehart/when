@@ -1,6 +1,5 @@
 #Angularfire
-* Redo auth in controllers and routers
-- Redo data factory
+* Redo data factory
 - Redo data in controllers and routers
 - Use ngResource
 #Authentication/Authorization
@@ -8,10 +7,6 @@
 - Set up password reset
 #Housekeeping
 - Bootstrap
-#Current task
-- user will be in routeScope, so take it out everywhere else.
-- js/profile.js
-- js/auth.js
 #Watch/Read
 - Compiler
 - NG vid 1
@@ -20,3 +15,6 @@
 - $httpbackend
 - angFire/Testing it
 - NG vid 2
+#Current task
+- Remove an event
+- Update event or return a synced object
