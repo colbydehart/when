@@ -3,7 +3,7 @@
 
 angular.module('dataFactory', ['authFactory', 'firebase'])
 
-.factory('data', ['$rootScope', '$firebase', function ($rootScope, $firebase){
+.factory('data', ['$rootScope', '$firebase', '$q', function ($rootScope, $firebase, $q){
 
   var url = 'https://when1021.firebaseio.com/';
   var query = function(){
@@ -17,34 +17,41 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
       return sync.$asObject();
     },
-    //ADD: adds a new event to the 
-    //     logged in user's events
-    add : function(name,cb){
-      var eventsSync = $firebase(new Firebase(url+'events')),
-          userSync = $firebase(new Firebase(url+'users/'+$rootScope.user.uid)),
-          id;
-      //Push in the new event into the 
-      //     'events' key on fb
-      eventsSync.$push({name: name, owner : $rootScope.user.uid})
+    addCalendar : function(cal, id) {
+      return $firebase(new Firebase(url+'events/'+id)).$push(cal);
+    },
+    addEvent : function(event, cb){
+      var id, name = event.name;
+      $firebase(new Firebase(url+'events')).$push(event)
       .then(function(ref) {
         id = ref.key();
         var event = {};
         event[id] = name;
-        //Then add that event's id to the 
-        //     current users events on fb
-        return userSync.$update(event);
+        return $firebase(new Firebase(url+'users/'+$rootScope.user.uid)).$update(event);
       })
       .then(function(ref) {
         cb(id);
+      })
+      .catch(function(err) {
+        console.log('Could not add event', err);
       });
     },
-    //GET: gets a single event from a provided id
-    get : function(id, cb){
-      var sync = $firebase(new Firebase(url+'events/'+id));
-      return sync.$asObject();
+    getEvent : function(id){
+      return $firebase(new Firebase(url+'events/'+id)).$asObject();
     },
-    remove : '',
-    update : ''
+    getCalendar : function(id, user) {
+      return $firebase(new Firebase(url+'events/'+id+'/'+user)).$asObject();
+    },
+    remove : function(id) {
+      var eventsSync = $firebase(new Firebase(url+'events')),
+          userSync = $firebase(new Firebase(url+'users/' + $rootScope.user.uid)),
+          userPromise = userSync.$remove(id),
+          eventPromise = eventsSync.$remove(id);
+      return $q.all([userPromise, eventPromise]);
+    },
+    update : function(id, event) {
+      return $firebase(new Firebase(url+'events')).$update(id, event);
+    }
   };
 }]);
 }());

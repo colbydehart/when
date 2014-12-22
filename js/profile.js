@@ -1,7 +1,7 @@
 ;(function () {
 'use strict';
 
-angular.module('profile', ['ngRoute', 'dataFactory' ])
+angular.module('profile', ['ngRoute', 'dataFactory', 'CalFactory' ])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -13,19 +13,18 @@ angular.module('profile', ['ngRoute', 'dataFactory' ])
   });
 }])  
 
-.controller('ProfileController', ['$location', '$scope', 'data', function($location, $scope, data){
+.controller('ProfileController', ['$location', '$scope', 'data', 'cal', function($location, $scope, data, cal){
   var vm = this;
   this.message = 'hello';
   
   data.getEventsForUser().$bindTo($scope, 'events');
 
   $scope.addEvent = function(){
-    var added = data.add($scope.newEvent, function(id) {
-      $location.path('/event/' + id);
-    });
+    $location.path('/events/new').search('name', $scope.newEvent); 
   };
 
   $scope.removeEvent = function(id) {
+    data.remove(id);
   };
 
 }]);

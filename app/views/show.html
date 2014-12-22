@@ -1,7 +1,12 @@
 <div class="show">
   <h2>When can you <span class="highlight">{{event.name}}</span></h2>
 
-  <div class="dayCell" ng-repeat="day in calendar">
+  <div ng-show="noUser">
+    <label>Enter your name</label>
+    <input type="text" ng-model="userName">
+    <button ng-click="userName && createCalendar()">Enter</button>
+  </div>
+  <div class="dayCell" ng-repeat="day in calendar.cal">
     <div class="date">{{day.date}} </div>
     <div class="calCell">
       <div class="morning" ng-class="{'unavailable' : !day.morning}"

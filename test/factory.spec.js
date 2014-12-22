@@ -10,7 +10,7 @@ describe("Factories", function(){
   }));
 
   it("should be imported", function(){
-    $data.add.should.not.be.undefined;
+    $data.addEvent.should.not.be.undefined;
     $auth.should.not.be.undefined;
   });
 

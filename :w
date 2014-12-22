@@ -16,8 +16,8 @@ angular.module('show', ['ngRoute', 'dataFactory'])
                       function( $location,   $scope,   data,   $routeParams){
   var id = $routeParams.id;
   $scope.noUser = false;
-  $scope.event = data.getEvent(id);
-  if(localStorage[id]){
+  var event = data.getEvent(id);
+  if(localStorage[id] && $scope.event[localStorage[id]]){
     data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar');
   }
   else{
@@ -28,7 +28,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
     $scope.noUser = false;
     var newCal = {};
     newCal.name = $scope.userName;
-    newCal.cal = _.clone($scope.event.calendar);
+    newCal.calendar = _.clone(event.calendar);
     data.addCalendar(newCal, id)
     .then(function(ref) {
       localStorage[id] = ref.key();
