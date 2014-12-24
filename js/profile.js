@@ -24,7 +24,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'CalFactory' ])
   };
 
   $scope.removeEvent = function(id) {
-    data.remove(id);
+    data.removeEvent(id);
   };
 
 }]);

@@ -42,12 +42,15 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
     getCalendar : function(id, user) {
       return $firebase(new Firebase(url+'events/'+id+'/'+user)).$asObject();
     },
-    remove : function(id) {
+    removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),
-          userSync = $firebase(new Firebase(url+'users/' + $rootScope.user.uid)),
-          userPromise = userSync.$remove(id),
-          eventPromise = eventsSync.$remove(id);
-      return $q.all([userPromise, eventPromise]);
+          userSync = $firebase(new Firebase(url+'users/' + $rootScope.user.uid));
+
+      userSync.$remove(id).then(function(ref) {
+        eventsSync.$remove(id);
+      }, function(err) {
+        console.log("Could not remove event: ", err);
+      });
     },
     update : function(id, event) {
       return $firebase(new Firebase(url+'events')).$update(id, event);
