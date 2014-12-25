@@ -1,7 +1,7 @@
 ;(function () {
 'use strict';
 
-angular.module('CalFactory', [])
+angular.module('calFactory', [])
 .factory('cal', ['$rootScope', function($rootScope){
   return {
     newCal : newCal,

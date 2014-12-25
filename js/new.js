@@ -1,7 +1,7 @@
 ;(function () {
 'use strict';
 
-angular.module('new', ['ngRoute', 'CalFactory'])
+angular.module('new', ['ngRoute', 'calFactory'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider

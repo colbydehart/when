@@ -1,7 +1,7 @@
 ;(function () {
 'use strict';
 
-angular.module('profile', ['ngRoute', 'dataFactory', 'CalFactory' ])
+angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider

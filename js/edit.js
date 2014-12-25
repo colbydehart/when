@@ -1,7 +1,7 @@
 ;(function () {
 'use strict';
 
-angular.module('edit', ['ngRoute'])
+angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -13,7 +13,8 @@ angular.module('edit', ['ngRoute'])
   });
 }])  
 
-.controller('EditController', ['$location', '$scope', function($location, $scope){
+.controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
+            function($routeParams, $location, $scope, data, cal){
+  data.getEvent($routeParams.id).$bindTo($scope, 'event');
 }]);
-//End Iife
 }());

@@ -82,7 +82,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
 ;(function () {
 'use strict';
 
-angular.module('CalFactory', [])
+angular.module('calFactory', [])
 .factory('cal', ['$rootScope', function($rootScope){
   return {
     newCal : newCal,
@@ -178,7 +178,7 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
 ;(function () {
 'use strict';
 
-angular.module('edit', ['ngRoute'])
+angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -190,9 +190,10 @@ angular.module('edit', ['ngRoute'])
   });
 }])  
 
-.controller('EditController', ['$location', '$scope', function($location, $scope){
+.controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
+            function($routeParams, $location, $scope, data, cal){
+  data.getEvent($routeParams.id).$bindTo($scope, 'event');
 }]);
-//End Iife
 }());
 
 ;(function () {
@@ -249,7 +250,7 @@ angular.module('when',
 ;(function () {
 'use strict';
 
-angular.module('new', ['ngRoute', 'CalFactory'])
+angular.module('new', ['ngRoute', 'calFactory'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -281,7 +282,7 @@ angular.module('new', ['ngRoute', 'CalFactory'])
 ;(function () {
 'use strict';
 
-angular.module('profile', ['ngRoute', 'dataFactory', 'CalFactory' ])
+angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
