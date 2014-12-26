@@ -18,7 +18,7 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       return sync.$asObject();
     },
     addCalendar : function(cal, id) {
-      return $firebase(new Firebase(url+'events/'+id)).$push(cal);
+      return $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal);
     },
     addEvent : function(event, cb){
       var id, name = event.name;
@@ -40,7 +40,7 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       return $firebase(new Firebase(url+'events/'+id)).$asObject();
     },
     getCalendar : function(id, user) {
-      return $firebase(new Firebase(url+'events/'+id+'/'+user)).$asObject();
+      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),

@@ -306,29 +306,29 @@ footer {
           .table-borders tbody td button {
             font-size: 0.8em; } }
 
-.show {
+.show, .edit {
   width: 80%;
   margin: auto; }
-  .show .highlight {
+  .show .highlight, .edit .highlight {
     color: #BA5A11; }
-  .show .dayCell {
+  .show .dayCell, .edit .dayCell {
     display: inline-block;
     width: calc(100% / 7);
     font-weight: bold; }
-  .show .calCell {
+  .show .calCell, .edit .calCell {
     margin: 5px;
     height: 80px;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #333; }
-    .show .calCell .date {
+    .show .calCell .date, .edit .calCell .date {
       position: absolute;
       top: -1em; }
-    .show .calCell .noon {
+    .show .calCell .noon, .edit .calCell .noon {
       border-top: 1px solid #333;
       border-bottom: 1px solid #333; }
-    .show .calCell .morning, .show .calCell .noon, .show .calCell .night {
+    .show .calCell .morning, .show .calCell .noon, .show .calCell .night, .edit .calCell .morning, .edit .calCell .noon, .edit .calCell .night {
       background-color: #dfa;
       height: 33%; }
-    .show .calCell .unavailable {
+    .show .calCell .unavailable, .edit .calCell .unavailable {
       background-color: #f2a972; }

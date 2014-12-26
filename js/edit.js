@@ -15,6 +15,14 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
             function($routeParams, $location, $scope, data, cal){
-  data.getEvent($routeParams.id).$bindTo($scope, 'event');
+  data.getEvent($routeParams.id).$bindTo($scope, 'event').then(function() {
+    updateCalendar();
+    $scope.$watch('event', updateCalendar);
+  });
+
+  function updateCalendar() {
+    $scope.mergedCal = cal.merge(_.cloneDeep($scope.event));  
+  }
 }]);
+
 }());

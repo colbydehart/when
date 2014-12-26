@@ -1,0 +1,10 @@
+<div class="edit">
+	<div class="dayCell" ng-repeat="day in mergedCal.calendar">
+	  <div class="date">{{day.date}} </div>
+	  <div class="calCell">
+	    <div class="morning" ng-class="{'unavailable' : !day.morning}"> </div>
+	    <div class="noon" ng-class="{'unavailable' : !day.noon}"> </div>
+	    <div class="night" ng-class="{'unavailable' : !day.night}"> </div>
+	  </div>
+	</div>
+</div>

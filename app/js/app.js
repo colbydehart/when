@@ -86,9 +86,33 @@ angular.module('calFactory', [])
 .factory('cal', ['$rootScope', function($rootScope){
   return {
     newCal : newCal,
-    convertDates : convertDates
+    convertDates : convertDates,
+    merge : merge
   };
 
+  function merge(event) {
+    var result = {
+      names : [],
+      calendar : _.clone(event.calendar)
+    }, 
+        len = result.calendar.length;
+
+    angular.forEach(event.participants, function(val, key) {
+      result.names.push(val.name);
+      for (var i = 0; i < len; i++) {
+        var curDay = val.cal[i],
+            resDay = result.calendar[i];
+        _.merge(resDay, curDay, function(a, b) {
+          if (_.isString(a)) return a;
+          return a && b;
+        });
+      }
+
+    });
+
+    return result;
+    
+  }
   function convertDates(cal) {
     return _.values(cal).map(function(item) {
       return new Date(item);
@@ -134,7 +158,7 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       return sync.$asObject();
     },
     addCalendar : function(cal, id) {
-      return $firebase(new Firebase(url+'events/'+id)).$push(cal);
+      return $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal);
     },
     addEvent : function(event, cb){
       var id, name = event.name;
@@ -156,7 +180,7 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       return $firebase(new Firebase(url+'events/'+id)).$asObject();
     },
     getCalendar : function(id, user) {
-      return $firebase(new Firebase(url+'events/'+id+'/'+user)).$asObject();
+      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),
@@ -192,8 +216,16 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
             function($routeParams, $location, $scope, data, cal){
-  data.getEvent($routeParams.id).$bindTo($scope, 'event');
+  data.getEvent($routeParams.id).$bindTo($scope, 'event').then(function() {
+    updateCalendar();
+    $scope.$watch('event', updateCalendar);
+  });
+
+  function updateCalendar() {
+    $scope.mergedCal = cal.merge(_.cloneDeep($scope.event));  
+  }
 }]);
+
 }());
 
 ;(function () {
