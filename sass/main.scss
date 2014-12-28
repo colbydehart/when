@@ -2,8 +2,16 @@
 @import 'base/base.scss';
 @import 'neat/neat';
 
+$blue: #BA5A11;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #DDD;
+$light-red: #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green: #E6EFC2;
 
 @import 'layout';
 @import 'auth';
 @import 'tables';
 @import 'cal';
+@import 'edit';

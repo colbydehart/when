@@ -306,29 +306,104 @@ footer {
           .table-borders tbody td button {
             font-size: 0.8em; } }
 
-.show, .edit {
+.show {
   width: 80%;
   margin: auto; }
-  .show .highlight, .edit .highlight {
+  .show .highlight {
     color: #BA5A11; }
-  .show .dayCell, .edit .dayCell {
-    display: inline-block;
+  .show .calRepeater {
+    position: relative; }
+  .show .dayCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    float: left;
     width: calc(100% / 7);
-    font-weight: bold; }
-  .show .calCell, .edit .calCell {
-    margin: 5px;
-    height: 80px;
-    border-radius: 15px;
+    font-weight: bold;
+    height: 1.5rem;
     overflow: hidden;
-    border: 1px solid #333; }
-    .show .calCell .date, .edit .calCell .date {
-      position: absolute;
-      top: -1em; }
-    .show .calCell .noon, .edit .calCell .noon {
+    border: 2px solid #333;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    text-align: center; }
+  .show .weekCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 80px;
+    width: 1.5rem;
+    left: -1.5rem;
+    position: absolute;
+    border: 2px solid #333;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    text-align: center; }
+  .show .weekPart {
+    height: 33.3%;
+    border-bottom: 1px solid #333; }
+    .show .weekPart:last-child {
+      border-bottom: none; }
+  .show .calCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    float: left;
+    width: calc(100% / 7);
+    font-weight: bold;
+    height: 80px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333; }
+    .show .calCell .noon {
       border-top: 1px solid #333;
       border-bottom: 1px solid #333; }
-    .show .calCell .morning, .show .calCell .noon, .show .calCell .night, .edit .calCell .morning, .edit .calCell .noon, .edit .calCell .night {
+    .show .calCell .morning, .show .calCell .noon, .show .calCell .night {
       background-color: #dfa;
-      height: 33%; }
-    .show .calCell .unavailable, .edit .calCell .unavailable {
+      height: 33.3%; }
+    .show .calCell .unavailable {
       background-color: #f2a972; }
+
+.edit {
+  width: 80%;
+  margin: auto; }
+  .edit .highlight {
+    color: #BA5A11; }
+  .edit .calCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    float: left;
+    font-size: 0.6rem;
+    width: calc(100% / 7);
+    height: 40px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333; }
+    .edit .calCell .noon {
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333; }
+    .edit .calCell .morning, .edit .calCell .noon, .edit .calCell .night {
+      background-color: #dfa;
+      height: 33.3%; }
+    .edit .calCell .unavailable {
+      background-color: #f2a972; }
+  .edit .editCalendar {
+    border: 2px solid #333;
+    border-bottom: 0;
+    border-right: 0;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .edit .editCalendar:last-child {
+      margin-right: 0; }
+  .edit .info {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .edit .info:last-child {
+      margin-right: 0; }

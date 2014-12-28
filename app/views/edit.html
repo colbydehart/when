@@ -1,10 +1,22 @@
 <div class="edit">
-	<div class="dayCell" ng-repeat="day in mergedCal.calendar">
-	  <div class="date">{{day.date}} </div>
-	  <div class="calCell">
-	    <div class="morning" ng-class="{'unavailable' : !day.morning}"> </div>
-	    <div class="noon" ng-class="{'unavailable' : !day.noon}"> </div>
-	    <div class="night" ng-class="{'unavailable' : !day.night}"> </div>
-	  </div>
+  <div class="info">
+    <h2 class="highlight">{{event.name}}</h2>
+    It looks like these times are good for
+    <span ng-repeat="name in mergedCal.names">
+      <span ng-if="!$first && !($last && $index===1)">, </span>
+      <span ng-if="$last">and </span>
+      {{name}}
+    </span>
+  </div>
+	<div class="editCalendar">
+    <div class="calCell" ng-repeat="day in daysToFill">
+    </div>
+		<div class="calCell" ng-repeat="day in mergedCal.calendar">
+		   <div class="morning" ng-class="{'unavailable' : !day.morning}">
+		     {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
+		   </div>
+		   <div class="noon" ng-class="{'unavailable' : !day.noon}"> </div>
+		   <div class="night" ng-class="{'unavailable' : !day.night}"> </div>
+		</div>
 	</div>
 </div>

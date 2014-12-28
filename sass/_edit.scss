@@ -1,0 +1,37 @@
+.edit{
+  .highlight{
+    color: $blue;
+  }
+  width:80%;
+  margin:auto;
+  .calCell{
+    @include user-select(none);
+    float: left;
+    font-size: 0.6rem;
+    width: calc(100% / 7) ;
+    height:40px;
+    border-right:2px solid $dark-gray;
+    border-bottom:2px solid $dark-gray;
+    .noon{
+      border-top:1px solid $dark-gray;
+      border-bottom:1px solid $dark-gray;
+    }
+    .morning, .noon, .night{
+      background-color: #dfa;
+      height: 33.3%;
+    }
+    .unavailable{
+      background-color: lighten($blue, 30);
+    }
+  }
+  .editCalendar{
+    border: 2px solid $dark-gray;
+    border-bottom: 0;
+    border-right: 0;
+    @include span-columns(6);
+  }
+  .info{
+    @include span-columns(6);
+  }
+}
+ 
