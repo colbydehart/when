@@ -39,12 +39,28 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   };
 
   $scope.toggleWeek = function(time, index){
-    var firstDay = days.indexOf($scope.calendar.cal[0].date.substr(0,3));
-    var state = !$scope.calendar.cal[index][time];
-    var numberOfDays = index !== 0 ?  7 : 7 - firstDay;
-    for (var i = 0; i < numberOfDays; i++) {
-      if(i+index < $scope.calendar.cal.length)
-        $scope.calendar.cal[i+index][time] = state;
+    var firstDay = days.indexOf($scope.calendar.cal[0].date.substr(0,3)),
+        i, weekState;
+    if (time !== 'all') {
+      weekState = !$scope.calendar.cal[index][time];
+      var numberOfDays = index !== 0 ?  7 : 7 - firstDay;
+      for (i = 0; i < numberOfDays; i++) {
+        if(i+index < $scope.calendar.cal.length)
+          $scope.calendar.cal[i+index][time] = weekState;
+      }
+    }
+    else{
+      weekState = !$scope.calendar.cal[index].morning;
+      i = 0;
+      var ender = index === $scope.calendar.cal.length - 1 ? 
+        $scope.daysToFill.length :
+        7;
+      while(i < ender && $scope.calendar.cal[index - i] !== undefined ){
+        $scope.calendar.cal[index - i].morning = weekState;
+        $scope.calendar.cal[index - i].noon = weekState;
+        $scope.calendar.cal[index - i].night = weekState;
+        i++;
+      }
     }
   };
 
@@ -74,7 +90,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   $scope.beginSelection = function(e) {
     $(document).on('mouseup', endSelection);
     $(document).on('mousemove', moveSelection);
-    $('<div>').addClass('selector').css({left : e.pageX+'px' ,top : e.pageY+'px'}).appendTo('.show');
+    $('<div>').addClass('selector').css({left : e.pageX+'px' ,top : e.pageY+'px', width:'0px'}).appendTo('body');
     $selector = $('.selector');
     X = e.pageX;
     Y = e.pageY;

@@ -23,6 +23,8 @@
       <div class="weekPart" ng-click="toggleWeek('noon', $index)"></div>
       <div class="weekPart" ng-click="toggleWeek('night', $index)"></div>
     </div>
+    <div class="allWeekCell" ng-if="($index + daysToFill.length+1)%7 === 0 || $last" 
+                             ng-click="toggleWeek('all', $index)"></div>
     <div class="morning" id="{{$index}}.morning" ng-class="{'unavailable' : !day.morning}" >
       {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
     </div>

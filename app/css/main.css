@@ -308,12 +308,13 @@ footer {
           .table-borders tbody td button {
             font-size: 0.8em; } }
 
+.selector {
+  background-color: rgba(0, 150, 150, 0.4);
+  position: absolute; }
+
 .show {
   width: 80%;
   margin: auto; }
-  .show .selector {
-    background-color: rgba(0, 150, 150, 0.4);
-    position: fixed; }
   .show .highlight {
     color: #BA5A11; }
   .show .calRepeater {
@@ -344,6 +345,19 @@ footer {
     border: 2px solid #333;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    text-align: center; }
+  .show .allWeekCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 80px;
+    width: 1.5rem;
+    right: -1.5rem;
+    position: absolute;
+    border: 2px solid #333;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
     text-align: center; }
   .show .weekPart {
     height: 33.3%;

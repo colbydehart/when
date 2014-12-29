@@ -1,8 +1,8 @@
+.selector{
+  background-color:rgba(0, 150, 150, 0.4);
+  position: absolute;
+}
 .show{
-  .selector{
-    background-color:rgba(0, 150, 150, 0.4);
-    position: fixed;
-  }
   .highlight{
     color: $blue;
   }
@@ -32,6 +32,17 @@
     border:2px solid $dark-gray;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    text-align: center;
+  }
+  .allWeekCell{
+    @include user-select(none);
+    height:80px;
+    width:1.5rem;
+    right: -1.5rem;
+    position: absolute;
+    border:2px solid $dark-gray;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
     text-align: center;
   }
   .weekPart{
