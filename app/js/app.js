@@ -372,7 +372,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
   if(localStorage[id]){
-    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(setUpCalendar);
+    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
   }
   else{
     $scope.noUser = true;
@@ -386,7 +386,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
     data.addCalendar(newCal, id)
     .then(function(ref) {
       localStorage[id] = ref.key();
-      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(setUpCalendar);
+      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
   };
 
@@ -415,16 +415,67 @@ angular.module('show', ['ngRoute', 'dataFactory'])
     }
   };
 
-  function setUpCalendar() {
-    fillInDays();
-    $('.calCell');
-  }
-
   function fillInDays() {
     $scope.daysToFill = new Array(days.indexOf($scope.calendar.cal[0].date.substr(0,3)));
     for (var i = 0; i < $scope.daysToFill.length; i++) {
       $scope.daysToFill[i] = i;
     }
+  }
+
+  var $selector, X, Y, state;
+  $scope.beginSelection = function(e) {
+    $(document).on('mouseup', endSelection);
+    $(document).on('mousemove', moveSelection);
+    $('<div>').addClass('selector').css({left : e.pageX+'px' ,top : e.pageY+'px'}).appendTo('.show');
+    $selector = $('.selector');
+    X = e.pageX;
+    Y = e.pageY;
+    if ($(e.target).attr('id')) {
+      var clickedTime = $(e.target).attr('id').split('.');
+      state = !$scope.calendar.cal[clickedTime[0]][clickedTime[1]];
+    }
+    else state = null;
+    return false;
+  };
+
+  function moveSelection(e) {
+    var x = e.pageX,
+        y = e.pageY;
+
+    if (x > X)
+      $selector.css({left: X+'px', width:(x-X)+'px'});
+    else
+      $selector.css({left: x+'px', width:(X-x)+'px'});
+    if (y > Y)
+      $selector.css({top: Y+'px', height:(y-Y)+'px'});
+    else
+      $selector.css({top: y+'px', height:(Y-y)+'px'});
+    return false;
+  }
+
+  function endSelection(e) {
+    $(document).off('mousemove', moveSelection);
+    var left = +$selector.css('left').replace('px',''),
+        top = +$selector.css('top').replace('px',''),
+        right = left + $selector.width(),
+        bottom = top + $selector.height(),
+        selectedEls = [];
+    $('.noon, .morning, .night').each(function(i, el) {
+      var curLeft = $(this).offset().left, curTop = $(this).offset().top,
+          curRight = curLeft + $(this).width(), curBottom = curTop + $(this).height();
+      if (!(curTop > bottom || curBottom < top || curLeft > right || curRight < left)){
+        var cell = $(this).attr('id').split('.'),
+            index = +cell[0], time = cell[1];
+        if (state === null) state = !$scope.calendar.cal[index][time];
+        $scope.calendar.cal[index][time] = state;
+      }
+    });
+
+    $scope.$apply();
+    $selector.remove();
+    X = Y = state =  null;
+    $(document).off('mouseup', endSelection);
+    return false;
   }
   
 }]);

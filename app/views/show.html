@@ -9,7 +9,7 @@
 
   <div class="dayCell" ng-show="!noUser" ng-repeat="day in days" ng-click="toggleDay(day[1])">{{day[0]}}</div>
 
-  <div class="calCell" ng-repeat="day in daysToFill">
+  <div class="calCell" ng-repeat="day in daysToFill" ng-mousedown="beginSelection($event)">
     <div class="weekCell" ng-if="$index === 0">
       <div class="weekPart" ng-click="toggleWeek('morning', 0)"></div>
       <div class="weekPart" ng-click="toggleWeek('noon', 0)"></div>
@@ -17,18 +17,16 @@
     </div>
   </div>
 
-  <div class="calCell" ng-repeat="day in calendar.cal">
+  <div class="calCell" ng-repeat="day in calendar.cal" ng-mousedown="beginSelection($event)">
     <div class="weekCell" ng-if="($index + daysToFill.length)%7 === 0">
       <div class="weekPart" ng-click="toggleWeek('morning', $index)"></div>
       <div class="weekPart" ng-click="toggleWeek('noon', $index)"></div>
       <div class="weekPart" ng-click="toggleWeek('night', $index)"></div>
     </div>
-    <div class="morning" ng-class="{'unavailable' : !day.morning}" ng-click="day.morning = !day.morning">
+    <div class="morning" id="{{$index}}.morning" ng-class="{'unavailable' : !day.morning}" >
       {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
     </div>
-    <div class="noon" ng-class="{'unavailable' : !day.noon}"
-         ng-click="day.noon = !day.noon"></div>
-    <div class="night" ng-class="{'unavailable' : !day.night}"
-         ng-click="day.night = !day.night"></div>
+    <div class="noon" id="{{$index}}.noon" ng-class="{'unavailable' : !day.noon}"></div>
+    <div class="night" id="{{$index}}.night" ng-class="{'unavailable' : !day.night}" ></div>
   </div>
 </div>

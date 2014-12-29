@@ -311,6 +311,9 @@ footer {
 .show {
   width: 80%;
   margin: auto; }
+  .show .selector {
+    background-color: rgba(0, 150, 150, 0.4);
+    position: fixed; }
   .show .highlight {
     color: #BA5A11; }
   .show .calRepeater {

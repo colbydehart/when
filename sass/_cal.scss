@@ -1,4 +1,8 @@
 .show{
+  .selector{
+    background-color:rgba(0, 150, 150, 0.4);
+    position: fixed;
+  }
   .highlight{
     color: $blue;
   }
