@@ -20,12 +20,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
   if(localStorage[id]){
-    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(function() {
-      $scope.daysToFill = new Array(days.indexOf($scope.calendar.cal[0].date.substr(0,3)));
-      for (var i = 0; i < $scope.daysToFill.length; i++) {
-        $scope.daysToFill[i] = i;
-      }
-    });
+    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(setUpCalendar);
   }
   else{
     $scope.noUser = true;
@@ -39,21 +34,18 @@ angular.module('show', ['ngRoute', 'dataFactory'])
     data.addCalendar(newCal, id)
     .then(function(ref) {
       localStorage[id] = ref.key();
-      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar');
+      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(setUpCalendar);
     });
   };
 
   $scope.toggleWeek = function(time, index){
     var firstDay = days.indexOf($scope.calendar.cal[0].date.substr(0,3));
     var state = !$scope.calendar.cal[index][time];
-    var numberOfDays = index !== 0 ?
-                       7 :
-                       7 - firstDay;
-      
-     for (var i = 0; i < numberOfDays; i++) {
+    var numberOfDays = index !== 0 ?  7 : 7 - firstDay;
+    for (var i = 0; i < numberOfDays; i++) {
       if(i+index < $scope.calendar.cal.length)
         $scope.calendar.cal[i+index][time] = state;
-     }
+    }
   };
 
   $scope.toggleDay = function(dayIndex) {
@@ -70,6 +62,18 @@ angular.module('show', ['ngRoute', 'dataFactory'])
       }
     }
   };
+
+  function setUpCalendar() {
+    fillInDays();
+    $('.calCell');
+  }
+
+  function fillInDays() {
+    $scope.daysToFill = new Array(days.indexOf($scope.calendar.cal[0].date.substr(0,3)));
+    for (var i = 0; i < $scope.daysToFill.length; i++) {
+      $scope.daysToFill[i] = i;
+    }
+  }
   
 }]);
 

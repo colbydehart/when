@@ -13,3 +13,4 @@
 - NG vid 2
 #Current
 - Set up small one in edit
+- All day week button on show page
