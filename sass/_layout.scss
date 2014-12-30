@@ -23,6 +23,13 @@ header{
   } 
 }
 
+.home{
+  width:80%;
+  margin: auto;
+  text-align: center;
+  button{text-align: center;}
+}
+
 footer{
   height: 50px;
   width: 100%;
@@ -34,6 +41,10 @@ footer{
   background-color: $dark-gray;
   padding: 15px;
   font-size: 0.8rem;
+}
+
+.highlight{
+  color: $blue;
 }
 
 .content{

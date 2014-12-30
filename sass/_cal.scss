@@ -2,10 +2,22 @@
   background-color:rgba(0, 150, 150, 0.4);
   position: absolute;
 }
+
+@mixin calButton($x, $y){
+    $button: #cccddd;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), $x $y 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    background-color: $button;
+    &:hover{
+      background-color:darken($button, 15);
+    }
+    &:active{
+      background-color:darken($button, 30);
+      box-shadow: inset 0 0 3px rgba(0, 0 ,0, 0.4);
+    }
+}
+
 .show{
-  .highlight{
-    color: $blue;
-  }
   width:80%;
   margin:auto;
   .calRepeater{
@@ -13,40 +25,50 @@
   }
   .dayCell{
     @include user-select(none);
+    @include transform(translateX(-2px));
+    @include calButton(0, -2px);
+    margin-top: 30px;
+    position: relative;
     float: left;
-    width: calc(100% / 7) ;
+    width: calc(100%/7);
     font-weight: bold;
     height:1.5rem;
     overflow:hidden;
-    border:2px solid $dark-gray;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+    border:1px solid $dark-gray;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     text-align: center;
   }
   .weekCell{
     @include user-select(none);
-    height:80px;
+    height:82px;
     width:1.5rem;
+    overflow: hidden;
+    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     left: -1.5rem;
     position: absolute;
-    border:2px solid $dark-gray;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    border:1px solid $dark-gray;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     text-align: center;
+    @include transform(translateY(-2px));
   }
   .allWeekCell{
     @include user-select(none);
-    height:80px;
+    @include transform(translateY(-2px));
+    @include calButton(2px, 0);
+    height:82px;
     width:1.5rem;
     right: -1.5rem;
     position: absolute;
-    border:2px solid $dark-gray;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border:1px solid $dark-gray;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
     text-align: center;
   }
   .weekPart{
     height: 33.3%;
+    @include calButton(0, 0);
     border-bottom: 1px solid $dark-gray;
     &:last-child{border-bottom: none;}
   }
@@ -70,6 +92,36 @@
     .unavailable{
       background-color: lighten($blue, 30);
     }
+  }
+  .exampleCell{
+    @include user-select(none);
+    width: 100px;
+    margin-left:20px;
+    display: inline-block;
+    height:100px;
+    font-weight: bold;
+    border:2px solid $dark-gray;
+    text-align: center;
+    .noon{
+      border-top:1px solid $dark-gray;
+      border-bottom:1px solid $dark-gray;
+    }
+    .morning, .noon, .night{
+      background-color: #dfa;
+      height: 33.3%;
+    }
+  }
+  .explanation{
+    display: inline-block;
+    width: 70%;
+  }
+  .diagram{
+    display: inline-block;
+    width:25%;
+  }
+  .footingText{
+    padding: 4rem 0;
+    clear:both;
   }
 }
  

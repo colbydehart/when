@@ -1,5 +1,20 @@
 <div class="show">
-  <h2>When can you <span class="highlight">{{event.name}}</span></h2>
+  <div class="explanation">
+  	<h2>When can you <span class="highlight">{{event.name}}</span></h2>
+  	<p>
+      Click and drag to select what times you are available.
+  	  Days are separated by morning, noon and night as shown here. 
+  	  You can also use the buttons along the side to select entire
+  	  days or weeks.
+  	</p>
+  </div>
+  <div class="diagram">
+  	<div class="exampleCell">
+  		<div class="morning">Morning</div>
+  		<div class="noon">Noon</div>
+  		<div class="night">Night</div>
+  	</div>
+  </div>
 
   <div ng-show="noUser">
     <label>Enter your name</label>
@@ -30,5 +45,10 @@
     </div>
     <div class="noon" id="{{$index}}.noon" ng-class="{'unavailable' : !day.noon}"></div>
     <div class="night" id="{{$index}}.night" ng-class="{'unavailable' : !day.night}" ></div>
+  </div>
+  <div class="footingText">
+  	No need to submit or save. The calendar is automatically synced. Also no need to log in. 
+  	As long as you use the same computer, you can visit this page again and update your availability
+  	and it will automagically update for this event.
   </div>
 </div>

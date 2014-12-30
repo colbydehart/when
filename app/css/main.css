@@ -232,6 +232,13 @@ header {
     color: white;
     display: inline-block; }
 
+.home {
+  width: 80%;
+  margin: auto;
+  text-align: center; }
+  .home button {
+    text-align: center; }
+
 footer {
   height: 50px;
   width: 100%;
@@ -243,6 +250,9 @@ footer {
   background-color: #333;
   padding: 15px;
   font-size: 0.8rem; }
+
+.highlight {
+  color: #BA5A11; }
 
 .content {
   margin-top: 120px;
@@ -315,8 +325,6 @@ footer {
 .show {
   width: 80%;
   margin: auto; }
-  .show .highlight {
-    color: #BA5A11; }
   .show .calRepeater {
     position: relative; }
   .show .dayCell {
@@ -324,44 +332,87 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-transform: translateX(-2px);
+    -moz-transform: translateX(-2px);
+    -ms-transform: translateX(-2px);
+    -o-transform: translateX(-2px);
+    transform: translateX(-2px);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 -2px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    background-color: #cccddd;
+    margin-top: 30px;
+    position: relative;
     float: left;
-    width: calc(100% / 7);
+    width: calc(100%/7);
     font-weight: bold;
     height: 1.5rem;
     overflow: hidden;
-    border: 2px solid #333;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+    border: 1px solid #333;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     text-align: center; }
+    .show .dayCell:hover {
+      background-color: #9ea0be; }
+    .show .dayCell:active {
+      background-color: #7073a0;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
   .show .weekCell {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    height: 80px;
+    height: 82px;
     width: 1.5rem;
+    overflow: hidden;
+    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     left: -1.5rem;
     position: absolute;
-    border: 2px solid #333;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    text-align: center; }
+    border: 1px solid #333;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px); }
   .show .allWeekCell {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    height: 80px;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 2px 0 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    background-color: #cccddd;
+    height: 82px;
     width: 1.5rem;
     right: -1.5rem;
     position: absolute;
-    border: 2px solid #333;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border: 1px solid #333;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
     text-align: center; }
+    .show .allWeekCell:hover {
+      background-color: #9ea0be; }
+    .show .allWeekCell:active {
+      background-color: #7073a0;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
   .show .weekPart {
     height: 33.3%;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    background-color: #cccddd;
     border-bottom: 1px solid #333; }
+    .show .weekPart:hover {
+      background-color: #9ea0be; }
+    .show .weekPart:active {
+      background-color: #7073a0;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
     .show .weekPart:last-child {
       border-bottom: none; }
   .show .calCell {
@@ -384,6 +435,33 @@ footer {
       height: 33.3%; }
     .show .calCell .unavailable {
       background-color: #f2a972; }
+  .show .exampleCell {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 100px;
+    margin-left: 20px;
+    display: inline-block;
+    height: 100px;
+    font-weight: bold;
+    border: 2px solid #333;
+    text-align: center; }
+    .show .exampleCell .noon {
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333; }
+    .show .exampleCell .morning, .show .exampleCell .noon, .show .exampleCell .night {
+      background-color: #dfa;
+      height: 33.3%; }
+  .show .explanation {
+    display: inline-block;
+    width: 70%; }
+  .show .diagram {
+    display: inline-block;
+    width: 25%; }
+  .show .footingText {
+    padding: 4rem 0;
+    clear: both; }
 
 .edit {
   width: 80%;
