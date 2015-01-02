@@ -4,9 +4,15 @@
     It looks like these times are good for
     <span ng-repeat="(key, part) in mergedCal.names">
       <span ng-if="!$first && !($last && $index===1)">, </span>
-      <span ng-if="$last">and </span>
+      <span ng-if="$last && !$first">and </span>
       {{part.name}}</span>.
-    You can email them all by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
+    <span ng-if=mergedCal.unavailable>Unfortunately, 
+      <span ng-repeat="(key, part) in mergedCal.unavailable">
+        <span ng-if="!$first && !($last && $index===1)">, </span>
+        <span ng-if="$last && !$first">and </span>
+        {{part.name}}</span> will not be able to attend.
+    </span>
+    You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
   </div>
 	<div class="editCalendar">
     <div class="calCell" ng-repeat="day in daysToFill">

@@ -1,8 +1,7 @@
 #Refactoring
 - Remove angularFire methods from other modules for orthagonality
+- Fix the crazy formatting on show page
 #Calendars
-- Allow option to remove you from participating if you cannot attend any
-  day and add to a list of people who cannot participate
 - Show calendar excluding certain participants if no one is available
 #Responsive
 - Make pages look better on mobile

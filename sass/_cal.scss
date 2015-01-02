@@ -115,12 +115,25 @@
     display: inline-block;
     width: 70%;
   }
+  .buffer{
+    // TODO fix this calendar
+    clear: both;
+    height: 2rem;
+  }
+  .cannotAttend{
+    display: block;
+    clear: both;
+    margin: auto;
+    border-radius: 30px;
+  }
   .diagram{
     display: inline-block;
     width:25%;
+    float: right;
+    margin-top: 2rem;
   }
   .footingText{
-    padding: 4rem 0;
+    padding: 2rem 0;
     clear:both;
   }
 }

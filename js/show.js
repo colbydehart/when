@@ -12,8 +12,8 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   });
 }])  
 
-.controller('ShowController', ['$location', '$scope', 'data', '$routeParams', 
-                      function( $location,   $scope,   data,   $routeParams){
+.controller('ShowController', ['$location', '$scope', 'data', '$routeParams', '$route', 
+                      function( $location,   $scope,   data,   $routeParams, $route){
   var id = $routeParams.id;
   $scope.noUser = false;
   $scope.event = data.getEvent(id);
@@ -37,6 +37,10 @@ angular.module('show', ['ngRoute', 'dataFactory'])
       localStorage[id] = ref.key();
       data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
+  };
+
+  $scope.cannotAttend = function() {
+    $scope.calendar.unavailable = !$scope.calendar.unavailable;
   };
 
   $scope.toggleWeek = function(time, index){

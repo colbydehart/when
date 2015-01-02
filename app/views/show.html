@@ -1,20 +1,28 @@
 <div class="show">
-  <div class="explanation">
+  <div class="explanation" ng-show="!calendar.unavailable">
   	<h2>When can you <span class="highlight">{{event.name}}</span></h2>
   	<p>
       Click and drag to select what times you are available.
+      Green is available and red means you can't make it.
   	  Days are separated by morning, noon and night as shown here. 
   	  You can also use the buttons along the side to select entire
   	  days or weeks.
   	</p>
   </div>
-  <div class="diagram">
+  <div class="diagram" ng-show="!calendar.unavailable">
   	<div class="exampleCell">
   		<div class="morning">Morning</div>
   		<div class="noon">Noon</div>
   		<div class="night">Night</div>
   	</div>
   </div>
+  <h6 ng-show="calendar.unavailable">
+    Sorry you can't make it to this event. Your availability will not be used
+    to determine the time of the event, but the owner of this event will be 
+    notified that you can't attend. If your schedule changes, you can come back
+    to this link and click the "Can Attend" button below.
+  </h6>
+  
 
   <div ng-show="noUser">
     <form novalidate name="newPart" ng-submit="newPart.$valid && createCalendar()">
@@ -26,31 +34,33 @@
     </form>
   </div>
 
-  <div class="dayCell" ng-show="!noUser" ng-repeat="day in days" ng-click="toggleDay(day[1])">{{day[0]}}</div>
-
-  <div class="calCell" ng-repeat="day in daysToFill" ng-mousedown="beginSelection($event)">
-    <div class="weekCell" ng-if="$index === 0">
-      <div class="weekPart" ng-click="toggleWeek('morning', 0)"></div>
-      <div class="weekPart" ng-click="toggleWeek('noon', 0)"></div>
-      <div class="weekPart" ng-click="toggleWeek('night', 0)"></div>
-    </div>
-  </div>
-
-  <div class="calCell" ng-repeat="day in calendar.cal" ng-mousedown="beginSelection($event)">
-    <div class="weekCell" ng-if="($index + daysToFill.length)%7 === 0">
-      <div class="weekPart" ng-click="toggleWeek('morning', $index)"></div>
-      <div class="weekPart" ng-click="toggleWeek('noon', $index)"></div>
-      <div class="weekPart" ng-click="toggleWeek('night', $index)"></div>
-    </div>
-    <div class="allWeekCell" ng-if="($index + daysToFill.length+1)%7 === 0 || $last" 
-                             ng-click="toggleWeek('all', $index)"></div>
-    <div class="morning" id="{{$index}}.morning" ng-class="{'unavailable' : !day.morning}" >
-      {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
-    </div>
-    <div class="noon" id="{{$index}}.noon" ng-class="{'unavailable' : !day.noon}"></div>
-    <div class="night" id="{{$index}}.night" ng-class="{'unavailable' : !day.night}" ></div>
-  </div>
-  <div class="footingText">
+  	<div class="dayCell" ng-show="!noUser && !calendar.unavailable" ng-repeat="day in days" ng-click="toggleDay(day[1])">{{day[0]}}</div>
+  	
+  	<div class="calCell" ng-show="!calendar.unavailable" ng-repeat="day in daysToFill" ng-mousedown="beginSelection($event)">
+  	  <div class="weekCell" ng-if="$index === 0">
+  	    <div class="weekPart" ng-click="toggleWeek('morning', 0)"></div>
+  	    <div class="weekPart" ng-click="toggleWeek('noon', 0)"></div>
+  	    <div class="weekPart" ng-click="toggleWeek('night', 0)"></div>
+  	  </div>
+  	</div>
+  	
+  	<div class="calCell" ng-show="!calendar.unavailable" ng-repeat="day in calendar.cal" ng-mousedown="beginSelection($event)">
+  	  <div class="weekCell" ng-if="($index + daysToFill.length)%7 === 0">
+  	    <div class="weekPart" ng-click="toggleWeek('morning', $index)"></div>
+  	    <div class="weekPart" ng-click="toggleWeek('noon', $index)"></div>
+  	    <div class="weekPart" ng-click="toggleWeek('night', $index)"></div>
+  	  </div>
+  	  <div class="allWeekCell" ng-if="($index + daysToFill.length+1)%7 === 0 || $last" 
+  	                           ng-click="toggleWeek('all', $index)"></div>
+  	  <div class="morning" id="{{$index}}.morning" ng-class="{'unavailable' : !day.morning}" >
+  	    {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
+  	  </div>
+  	  <div class="noon" id="{{$index}}.noon" ng-class="{'unavailable' : !day.noon}"></div>
+  	  <div class="night" id="{{$index}}.night" ng-class="{'unavailable' : !day.night}" ></div>
+  	</div>
+  <div class="buffer"></div>
+  <button class="cannotAttend" ng-click="cannotAttend()">{{calendar.unavailable ? 'Can attend' : 'Cannot attend'}}</button>
+  <div class="footingText" ng-show="!calendar.unavailable">
   	No need to submit or save. The calendar is automatically synced. Also no need to log in. 
   	As long as you use the same computer, you can visit this page again and update your availability
   	and it will automagically update for this event.
