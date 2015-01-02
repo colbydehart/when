@@ -5,8 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "karma start",
-    "start" : "gulp",
-    "deploy" : "s3-cli sync --delete-removed app/ s3://when.colbydehart.com/"
+    "start": "gulp",
+    "deploy": "s3-cli sync --delete-removed app/ s3://when.colbydehart.com/"
   },
   "author": "Colby DeHart",
   "license": "MIT",
@@ -25,6 +25,7 @@
     "karma-chrome-launcher": "~0.1.7",
     "karma-sinon-chai": "~0.2.0",
     "karma-phantomjs-launcher": "~0.1.4",
-    "karma-nyan-reporter": "0.0.50"
+    "karma-nyan-reporter": "0.0.50",
+    "gulp-connect": "~2.2.0"
   }
 }

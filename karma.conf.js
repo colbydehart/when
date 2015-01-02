@@ -22,6 +22,7 @@ module.exports = function(config) {
       'app/vendor/jquery/dist/jquery.min.js',
       'app/vendor/firebase/firebase.js',
       'app/vendor/angular/angular.js',
+      'app/vendor/angular-touch/angular-touch.min.js',
       'app/vendor/angularfire/dist/angularfire.min.js',
       'app/vendor/angular-route/angular-route.js',
       'app/vendor/angular-mocks/angular-mocks.js',

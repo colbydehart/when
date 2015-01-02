@@ -42,7 +42,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
       .then(function(authData){
           $location.path('/events');
       })
-      .catch(function(){
+      .catch(function(err){
         $location.path('/login').search('error', err);
         $scope.$apply();
       });

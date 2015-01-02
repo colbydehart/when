@@ -17,7 +17,7 @@ angular.module('calFactory', [])
         len = result.calendar.length;
 
     angular.forEach(event.participants, function(val, key) {
-      result.names.push(val.name);
+      result.names.push({name: val.name});
       for (var i = 0; i < len; i++) {
         var curDay = val.cal[i],
             resDay = result.calendar[i];

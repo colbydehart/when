@@ -2,10 +2,10 @@
   <div class="info">
     <h2 class="highlight">{{event.name}}</h2>
     It looks like these times are good for
-    <span ng-repeat="name in mergedCal.names">
+    <span ng-repeat="(key, part) in mergedCal.names">
       <span ng-if="!$first && !($last && $index===1)">, </span>
       <span ng-if="$last">and </span>
-      {{name}}
+      {{part.name}}
     </span>
   </div>
 	<div class="editCalendar">

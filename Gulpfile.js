@@ -23,13 +23,20 @@ gulp.task('build',['js', 'sass'], function() {
   console.log('Site built at app/'); 
 });
 
+gulp.task('lr', function() {
+  gulp.src('./app/*') 
+    .pipe($.connect.reload());
+});
+
 //Default
 gulp.task('default', ['js', 'sass'], function() {
   gulp.watch('js/*.js', ['js']);
   gulp.watch('sass/**/*.scss', ['sass']);
-  gulp.src('app/')
-    .pipe($.webserver({
-      livereload : true,
-      open : true
-    }));
+  gulp.watch('app/**/*', ['lr']);
+  $.connect.server({
+    livereload : true,
+    root : 'app',
+    host : '*',
+    open : true
+  });
 });
