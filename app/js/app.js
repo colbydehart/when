@@ -93,12 +93,14 @@ angular.module('calFactory', [])
   function merge(event) {
     var result = {
       names : [],
+      emails : [],
       calendar : _.clone(event.calendar)
     }, 
         len = result.calendar.length;
 
     angular.forEach(event.participants, function(val, key) {
       result.names.push({name: val.name});
+      result.emails.push(val.email);
       for (var i = 0; i < len; i++) {
         var curDay = val.cal[i],
             resDay = result.calendar[i];
@@ -110,6 +112,7 @@ angular.module('calFactory', [])
 
     });
 
+    result.emails = result.emails.join(',');
     return result;
     
   }
@@ -151,14 +154,15 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
   };
 
   return {
-    //GET_EVENTS_FOR_USER: gets all events for
-    //   currently logged in user.
     getEventsForUser : function(cb){
       var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
       return sync.$asObject();
     },
-    addCalendar : function(cal, id) {
+    addParticipant : function(cal, id) {
       return $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal);
+    },
+    getParticipant : function(id, user) {
+      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     addEvent : function(event, cb){
       var id, name = event.name;
@@ -171,16 +175,12 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       })
       .then(function(ref) {
         cb(id);
-      })
-      .catch(function(err) {
+      },function(err) {
         console.log('Could not add event', err);
       });
     },
     getEvent : function(id){
       return $firebase(new Firebase(url+'events/'+id)).$asObject();
-    },
-    getCalendar : function(id, user) {
-      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),
@@ -372,7 +372,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
   if(localStorage[id]){
-    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+    data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
   }
   else{
     $scope.noUser = true;
@@ -380,13 +380,14 @@ angular.module('show', ['ngRoute', 'dataFactory'])
 
   $scope.createCalendar = function() {
     $scope.noUser = false;
-    var newCal = {};
-    newCal.name = $scope.userName;
-    newCal.cal = _.clone($scope.event.calendar);
-    data.addCalendar(newCal, id)
+    var newParticipant = {};
+    newParticipant.name = $scope.userName;
+    newParticipant.email = $scope.email;
+    newParticipant.cal = _.clone($scope.event.calendar);
+    data.addParticipant(newParticipant, id)
     .then(function(ref) {
       localStorage[id] = ref.key();
-      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+      data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
   };
 

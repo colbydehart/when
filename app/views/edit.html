@@ -5,8 +5,8 @@
     <span ng-repeat="(key, part) in mergedCal.names">
       <span ng-if="!$first && !($last && $index===1)">, </span>
       <span ng-if="$last">and </span>
-      {{part.name}}
-    </span>
+      {{part.name}}</span>.
+    You can email them all by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
   </div>
 	<div class="editCalendar">
     <div class="calCell" ng-repeat="day in daysToFill">

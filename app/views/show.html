@@ -17,9 +17,13 @@
   </div>
 
   <div ng-show="noUser">
-    <label>Enter your name</label>
-    <input type="text" ng-model="userName">
-    <button ng-click="userName && createCalendar()">Enter</button>
+    <form novalidate name="newPart" ng-submit="newPart.$valid && createCalendar()">
+    	<label>Enter your name</label>
+    	<input type="text" ng-model="userName" required>
+    	<label>and email</label>
+    	<input type="email" ng-model="email" required>
+    	<button type="submit">Enter</button>
+    </form>
   </div>
 
   <div class="dayCell" ng-show="!noUser" ng-repeat="day in days" ng-click="toggleDay(day[1])">{{day[0]}}</div>

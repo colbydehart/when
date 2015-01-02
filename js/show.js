@@ -20,7 +20,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
   if(localStorage[id]){
-    data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+    data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
   }
   else{
     $scope.noUser = true;
@@ -28,13 +28,14 @@ angular.module('show', ['ngRoute', 'dataFactory'])
 
   $scope.createCalendar = function() {
     $scope.noUser = false;
-    var newCal = {};
-    newCal.name = $scope.userName;
-    newCal.cal = _.clone($scope.event.calendar);
-    data.addCalendar(newCal, id)
+    var newParticipant = {};
+    newParticipant.name = $scope.userName;
+    newParticipant.email = $scope.email;
+    newParticipant.cal = _.clone($scope.event.calendar);
+    data.addParticipant(newParticipant, id)
     .then(function(ref) {
       localStorage[id] = ref.key();
-      data.getCalendar(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+      data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
   };
 

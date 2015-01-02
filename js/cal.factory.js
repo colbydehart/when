@@ -12,12 +12,14 @@ angular.module('calFactory', [])
   function merge(event) {
     var result = {
       names : [],
+      emails : [],
       calendar : _.clone(event.calendar)
     }, 
         len = result.calendar.length;
 
     angular.forEach(event.participants, function(val, key) {
       result.names.push({name: val.name});
+      result.emails.push(val.email);
       for (var i = 0; i < len; i++) {
         var curDay = val.cal[i],
             resDay = result.calendar[i];
@@ -29,6 +31,7 @@ angular.module('calFactory', [])
 
     });
 
+    result.emails = result.emails.join(',');
     return result;
     
   }

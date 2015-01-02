@@ -11,14 +11,15 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
   };
 
   return {
-    //GET_EVENTS_FOR_USER: gets all events for
-    //   currently logged in user.
     getEventsForUser : function(cb){
       var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
       return sync.$asObject();
     },
-    addCalendar : function(cal, id) {
+    addParticipant : function(cal, id) {
       return $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal);
+    },
+    getParticipant : function(id, user) {
+      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     addEvent : function(event, cb){
       var id, name = event.name;
@@ -31,16 +32,12 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
       })
       .then(function(ref) {
         cb(id);
-      })
-      .catch(function(err) {
+      },function(err) {
         console.log('Could not add event', err);
       });
     },
     getEvent : function(id){
       return $firebase(new Firebase(url+'events/'+id)).$asObject();
-    },
-    getCalendar : function(id, user) {
-      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
     },
     removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),
