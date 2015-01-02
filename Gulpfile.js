@@ -32,7 +32,7 @@ gulp.task('lr', function() {
 gulp.task('default', ['js', 'sass'], function() {
   gulp.watch('js/*.js', ['js']);
   gulp.watch('sass/**/*.scss', ['sass']);
-  gulp.watch(['app/*', '!app/vendor','!app/vendor/**'], ['lr']);
+  gulp.watch(['app/**/*'], ['lr']);
   $.connect.server({
     livereload : true,
     root : 'app',

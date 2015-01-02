@@ -6,7 +6,7 @@
       <span ng-if="!$first && !($last && $index===1)">, </span>
       <span ng-if="$last && !$first">and </span>
       {{part.name}}</span>.
-    <span ng-if=mergedCal.unavailable>Unfortunately, 
+    <span ng-if=mergedCal.unavailable.length>Unfortunately, 
       <span ng-repeat="(key, part) in mergedCal.unavailable">
         <span ng-if="!$first && !($last && $index===1)">, </span>
         <span ng-if="$last && !$first">and </span>

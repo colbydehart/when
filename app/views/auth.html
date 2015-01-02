@@ -1,5 +1,5 @@
 <div id="auth">
-  <div class="warning" ng-if="error">{{error}}</div>
+  <div class="warning" ng-if="error">Error: {{error.message}}</div>
   <form ng-submit="authForm.$valid && submit()"
         name='authForm'
         novalidate>

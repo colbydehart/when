@@ -232,13 +232,6 @@ header {
     color: white;
     display: inline-block; }
 
-.home {
-  width: 80%;
-  margin: auto;
-  text-align: center; }
-  .home button {
-    text-align: center; }
-
 footer {
   height: 50px;
   width: 100%;
@@ -256,17 +249,180 @@ footer {
 
 .content {
   margin-top: 120px;
-  margin-bottom: 50px;
+  margin-bottom: 50px; }
+
+.home {
   max-width: 68em;
   margin-left: auto;
-  margin-right: auto; }
-  .content:after {
+  margin-right: auto;
+  margin-left: 25.58941%;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  text-align: center; }
+  .home:after {
     content: "";
     display: table;
     clear: both; }
+  .home:last-child {
+    margin-right: 0; }
+  .home button {
+    text-align: center; }
+  @media screen and (max-width: 550px)  {
+    .home {
+      margin-left: 8.5298%;
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 82.94039%; }
+      .home:last-child {
+        margin-right: 0; } }
 
-#auth .warning {
-  color: red; }
+#profile {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  #profile:after {
+    content: "";
+    display: table;
+    clear: both; }
+  #profile #your-events {
+    background-color: #aaa;
+    border-radius: 15px;
+    padding: 1rem;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%;
+    margin-left: 8.5298%;
+    margin-bottom: 3rem; }
+    #profile #your-events td:first-child {
+      width: 50%; }
+    #profile #your-events td:not(:first-child) {
+      padding: 0;
+      text-align: center; }
+    #profile #your-events td:last-child {
+      width: 10%; }
+    #profile #your-events:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      #profile #your-events {
+        margin-left: 0%;
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        #profile #your-events:last-child {
+          margin-right: 0; } }
+  #profile p {
+    margin-left: 8.5298%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%; }
+    #profile p:last-child {
+      margin-right: 0; }
+    #profile p a {
+      float: right; }
+  #profile h3 {
+    margin-left: 8.5298%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%; }
+    #profile h3:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      #profile h3 {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        #profile h3:last-child {
+          margin-right: 0; } }
+  #profile form {
+    margin-left: 8.5298%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%; }
+    #profile form:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      #profile form {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        #profile form:last-child {
+          margin-right: 0; } }
+    #profile form input {
+      float: left;
+      display: block;
+      margin-right: 2.84259%;
+      width: 69.14722%;
+      margin: 0;
+      padding: 0.7rem; }
+      #profile form input:last-child {
+        margin-right: 0; }
+      @media screen and (max-width: 550px)  {
+        #profile form input {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 74.41059%; }
+          #profile form input:last-child {
+            margin-right: 0; } }
+    #profile form button {
+      float: left;
+      display: block;
+      margin-right: 2.84259%;
+      width: 28.01019%; }
+      #profile form button:last-child {
+        margin-right: 0; }
+      @media screen and (max-width: 550px)  {
+        #profile form button {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 23.23176%; }
+          #profile form button:last-child {
+            margin-right: 0; } }
+
+#auth {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  #auth:after {
+    content: "";
+    display: table;
+    clear: both; }
+  #auth form {
+    margin-left: 17.05961%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%; }
+    #auth form:last-child {
+      margin-right: 0; }
+  #auth button {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%;
+    margin-left: 38.842%;
+    text-align: center; }
+    #auth button:last-child {
+      margin-right: 0; }
+  #auth .warning {
+    display: block;
+    text-align: center;
+    color: red; }
+    #auth .warning:after {
+      content: "";
+      display: table;
+      clear: both; }
 
 .table-borders {
   border: 1px solid #DDD;

@@ -23,12 +23,6 @@ header{
   } 
 }
 
-.home{
-  width:80%;
-  margin: auto;
-  text-align: center;
-  button{text-align: center;}
-}
 
 footer{
   height: 50px;
@@ -50,5 +44,19 @@ footer{
 .content{
   margin-top: 120px;
   margin-bottom:50px;
-  @include outer-container;
 }
+
+//Home page
+.home{
+  @include outer-container();
+  @include shift(3);
+  @include span-columns(6);
+  text-align: center;
+  button{text-align: center;}
+  @include media($mobile){
+    @include shift(1);
+    @include span-columns(10);
+
+  }
+}
+

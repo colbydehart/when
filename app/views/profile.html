@@ -1,19 +1,33 @@
-<h2>Your Events</h2>
+<div id="profile">
+  <p>
+    <a ng-click="moreInfo=!moreInfo" class="fa-stack fa">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-info fa-inverse fa-stack-1x"></i>
+    </a>
+    <span ng-show="moreInfo">
+    These are your currently open events. You can copy the 'link' button below to 
+    share with those you want to participate in the event, as well as fill
+    out your own availability. Click the 'Edit' button to see <strong class="highlight">when</strong>
+    is a good time for everyone as well as email them. The '&times;' button will let
+    you delete events.</span>
+  </p>
+	<div id="your-events">
+		<h2>Your Events</h2>
+		
+		<table class='table-borders'>
+		  <tr ng-repeat="(key, event) in events" >
+		    <td>{{event}}</td>
+		    <td><a href="#/event/{{key}}"><button>Link</button></a></td>
+		    <td><a href="#/event/{{key}}/edit"><button>Edit</button></a></td>
+		    <td><a href="#/events" ng-click="removeEvent(key)">&times</a></td>
+		  </tr>
+		</table>
+	</div>
 
-<table class='table-borders'>
-  <tr ng-repeat="(key, event) in events" >
-    <td>{{event}}</td>
-    <td></td>
-    <td><a href="#/event/{{key}}"><button>Link</button></a></td>
-    <td><a href="#/event/{{key}}/edit"><button>Edit</button></a></td>
-    <td><a href="#/events" ng-click="removeEvent(key)">&times</a></td>
-  </tr>
-</table>
-
-<h3>Add a new event</h3>
-<!-- TODO add angular style validation -->
-<form name="add" ng-submit="addEvent()">
-  <label>Name</label>
-  <input type="text" ng-model="newEvent" required>
-  <button type="submit">Add</button>
-</form>
+	
+	<h3><span class="highlight">When</span> is good to </h3>
+	<form name="add" ng-submit="add.$valid && addEvent()">
+    <input placeholder="Do something" type="text" ng-model="newEvent" required>
+	  <button type="submit">Add</button>
+	</form>
+</div>

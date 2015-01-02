@@ -40,8 +40,6 @@ angular.module('auth', ['ngRoute', 'authFactory'])
   $scope.method = $location.path().replace('/','');
   $scope.matching = true;
   //TODO more elegant error flashing
-  $scope.error =  $location.search().error;
-  //Logout
   if ($scope.method === 'logout'){
     auth.$unauth();
     $location.path('/');
@@ -54,8 +52,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
           $location.path('/events');
       })
       .catch(function(err){
-        $location.path('/login').search('error', err);
-        $scope.$apply();
+        $scope.error = err;
       });
     }
     if ($scope.method === 'register'){
@@ -100,7 +97,6 @@ angular.module('calFactory', [])
         len = result.calendar.length;
 
     angular.forEach(event.participants, function(val, key) {
-      console.log(val);
       if (val.unavailable) {
         result.unavailable.push({name: val.name});
       }
@@ -350,7 +346,8 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
   };
 
   $scope.removeEvent = function(id) {
-    data.removeEvent(id);
+    if(confirm("This will delete the event. Are you sure?"))
+      data.removeEvent(id);
   };
 
 }]);

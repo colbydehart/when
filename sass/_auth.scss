@@ -1,5 +1,17 @@
 #auth{
+  @include outer-container();
+  form{
+    @include shift(2);
+    @include span-columns(8);
+  }
+  button{
+    @include span-columns(2 of 8);
+    @include shift(3);
+    text-align:center;
+  }
   .warning{
+    @include row();
+    text-align:center;
     color: red;
   }
 }

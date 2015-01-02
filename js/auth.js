@@ -29,8 +29,6 @@ angular.module('auth', ['ngRoute', 'authFactory'])
   $scope.method = $location.path().replace('/','');
   $scope.matching = true;
   //TODO more elegant error flashing
-  $scope.error =  $location.search().error;
-  //Logout
   if ($scope.method === 'logout'){
     auth.$unauth();
     $location.path('/');
@@ -43,8 +41,7 @@ angular.module('auth', ['ngRoute', 'authFactory'])
           $location.path('/events');
       })
       .catch(function(err){
-        $location.path('/login').search('error', err);
-        $scope.$apply();
+        $scope.error = err;
       });
     }
     if ($scope.method === 'register'){

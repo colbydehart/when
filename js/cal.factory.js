@@ -19,7 +19,6 @@ angular.module('calFactory', [])
         len = result.calendar.length;
 
     angular.forEach(event.participants, function(val, key) {
-      console.log(val);
       if (val.unavailable) {
         result.unavailable.push({name: val.name});
       }

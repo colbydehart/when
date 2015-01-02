@@ -3,10 +3,16 @@
 - Fix the crazy formatting on show page
 #Calendars
 - Show calendar excluding certain participants if no one is available
+- Edit calendar name on edit page
+- After linking from profile, make location be the actual link
 #Responsive
+* Redo everything the neat way
 - Make pages look better on mobile
 - Change selection on mobile or disable (try jquery mobile or angular touch events)
 #Authentication/Authorization
 - Bust login/register into directive modal
 - Set up password reset
 #Current
+- Show
+- Edit
+

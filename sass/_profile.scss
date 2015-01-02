@@ -1,0 +1,61 @@
+#profile{
+  @include outer-container();
+  #your-events{
+    background-color: #aaa;
+    border-radius: 15px;
+    padding: 1rem;
+    td{
+      &:first-child{
+        width:50%;
+      }
+      &:not(:first-child){
+        padding: 0;
+        text-align:center;
+      }
+      &:last-child{
+        width:10%;
+      }
+    }
+    @include span-columns(10);
+    @include shift(1);
+    @include media($mobile){
+      @include shift(0);
+      @include span-columns(12);
+    }
+    margin-bottom:3rem;
+  }
+  p{
+    @include shift(1);
+    @include span-columns(10);
+    a{float: right;}
+  }
+  h3{
+    @include shift(1);
+    @include span-columns(10);
+    @include media($mobile){
+      @include span-columns(12);
+    }
+  }
+  form{
+    @include shift(1);
+    @include span-columns(10);
+    @include media($mobile){
+      @include span-columns(12);
+    }
+    input{
+      @include span-columns(7 of 10);
+      margin:0;
+      padding:0.7rem;
+      @include media($mobile){
+        @include span-columns(9 of 12);
+      }
+    }
+    button{
+      @include span-columns(3 of 10);
+      @include media($mobile){
+        @include span-columns(3 of 12);
+      }
+    }
+
+  }
+}
