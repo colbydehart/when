@@ -3,6 +3,7 @@
 
 angular.module('when', 
                ['ngRoute',
+               'ngTouch',
                'auth',
                'edit',
                'new',

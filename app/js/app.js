@@ -265,6 +265,7 @@ angular.module('home', ['ngRoute'])
 
 angular.module('when', 
                ['ngRoute',
+               'ngTouch',
                'auth',
                'edit',
                'new',
@@ -357,7 +358,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
 ;(function () {
 'use strict';
 
-angular.module('show', ['ngRoute', 'dataFactory'])
+angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -368,8 +369,8 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   });
 }])  
 
-.controller('ShowController', ['$location', '$scope', 'data', '$routeParams', '$route', 
-                      function( $location,   $scope,   data,   $routeParams, $route){
+.controller('ShowController', ['$location', '$scope', 'data', '$routeParams', '$route', '$swipe', 
+                      function( $location,   $scope,   data,   $routeParams,   $route,   $swipe){
   var id = $routeParams.id;
   $scope.noUser = false;
   $scope.event = data.getEvent(id);
@@ -448,7 +449,19 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   }
 
   var $selector, X, Y, state;
+  $swipe.bind($(document), {
+    start: function(loc, e) {
+      beginSelection(e);
+    },
+    move : function(loc, e) {
+      moveSelection(e);
+    },
+    end : function(loc, e) {
+      endSelection(e);
+    }
+  });
   $scope.beginSelection = function(e) {
+    e.preventDefault();
     $(document).on('mouseup', endSelection);
     $(document).on('mousemove', moveSelection);
     $('<div>').addClass('selector').css({left : e.pageX+'px' ,top : e.pageY+'px', width:'0px'}).appendTo('body');
@@ -464,6 +477,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   };
 
   function moveSelection(e) {
+    e.preventDefault();
     var x = e.pageX,
         y = e.pageY;
 
@@ -479,6 +493,7 @@ angular.module('show', ['ngRoute', 'dataFactory'])
   }
 
   function endSelection(e) {
+    e.preventDefault();
     $(document).off('mousemove', moveSelection);
     var left = +$selector.css('left').replace('px',''),
         top = +$selector.css('top').replace('px',''),

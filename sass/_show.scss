@@ -21,12 +21,18 @@
   @include media($mobile){
     margin: 0 2rem;
   }
+  .footingText{
+    margin-bottom: 2rem;
+  }
   .explanation, .footingText {
     @include span-columns(8);
     @include shift(2);
     @include media($mobile){
       @include shift(0);
       @include span-columns(12);
+    }
+    a{
+      font-size:0.8rem;
     }
   }
   #noUser{
@@ -103,7 +109,8 @@
     }
   }
   button{
-    @include row();
+    display: block;
+    clear: both;
     margin: 2rem auto;
   }
   h6{

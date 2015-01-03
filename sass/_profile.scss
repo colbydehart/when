@@ -1,9 +1,7 @@
 #profile{
   @include outer-container();
+  margin: 0 1rem;
   #your-events{
-    background-color: #aaa;
-    border-radius: 15px;
-    padding: 1rem;
     td{
       &:first-child{
         width:50%;
@@ -36,12 +34,17 @@
       @include span-columns(12);
     }
   }
+  .remove{
+    font-size: 1.5rem;
+  }
   form{
     @include shift(1);
     @include span-columns(10);
     @include media($mobile){
+      @include shift(0);
       @include span-columns(12);
     }
+    margin-bottom: 3rem;
     input{
       @include span-columns(7 of 10);
       margin:0;

@@ -1,0 +1,15 @@
+#new{
+  @include outer-container();
+  margin: 0 2rem;
+  h2, form{
+    @include span-columns(8);
+    @include shift(2);
+    @include media($mobile){
+      @include shift(0);
+      @include span-columns(12);
+    }
+  }
+  form{
+    margin-bottom: 4rem;
+  }
+}

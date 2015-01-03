@@ -282,15 +282,13 @@ footer {
 #profile {
   max-width: 68em;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  margin: 0 1rem; }
   #profile:after {
     content: "";
     display: table;
     clear: both; }
   #profile #your-events {
-    background-color: #aaa;
-    border-radius: 15px;
-    padding: 1rem;
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -341,16 +339,20 @@ footer {
         width: 100%; }
         #profile h3:last-child {
           margin-right: 0; } }
+  #profile .remove {
+    font-size: 1.5rem; }
   #profile form {
     margin-left: 8.5298%;
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 82.94039%; }
+    width: 82.94039%;
+    margin-bottom: 3rem; }
     #profile form:last-child {
       margin-right: 0; }
     @media screen and (max-width: 550px)  {
       #profile form {
+        margin-left: 0%;
         float: left;
         display: block;
         margin-right: 2.35765%;
@@ -415,6 +417,15 @@ footer {
     text-align: center; }
     #auth button:last-child {
       margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      #auth button {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 65.88078%;
+        margin-left: 17.05961%; }
+        #auth button:last-child {
+          margin-right: 0; } }
   #auth .warning {
     display: block;
     text-align: center;
@@ -489,6 +500,8 @@ footer {
   @media screen and (max-width: 550px)  {
     .show {
       margin: 0 2rem; } }
+  .show .footingText {
+    margin-bottom: 2rem; }
   .show .explanation, .show .footingText {
     float: left;
     display: block;
@@ -506,6 +519,8 @@ footer {
         width: 100%; }
         .show .explanation:last-child, .show .footingText:last-child {
           margin-right: 0; } }
+    .show .explanation a, .show .footingText a {
+      font-size: 0.8rem; }
   .show #noUser {
     float: left;
     display: block;
@@ -630,11 +645,8 @@ footer {
       background-color: #f2a972; }
   .show button {
     display: block;
+    clear: both;
     margin: 2rem auto; }
-    .show button:after {
-      content: "";
-      display: table;
-      clear: both; }
   .show h6 {
     float: left;
     display: block;
@@ -669,10 +681,24 @@ footer {
     height: 33.3%; }
 
 .edit {
-  width: 80%;
-  margin: auto; }
-  .edit .highlight {
-    color: #BA5A11; }
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 2rem; }
+  .edit:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .edit .noon {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333; }
+  .edit .morning, .edit .noon, .edit .night {
+    background-color: #dfa;
+    height: 33.3%; }
+  .edit h2 {
+    margin-bottom: 2rem; }
+  .edit .unavailable {
+    background-color: #f2a972; }
   .edit .calCell {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -684,28 +710,83 @@ footer {
     height: 40px;
     border-right: 2px solid #333;
     border-bottom: 2px solid #333; }
-    .edit .calCell .noon {
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333; }
-    .edit .calCell .morning, .edit .calCell .noon, .edit .calCell .night {
-      background-color: #dfa;
-      height: 33.3%; }
-    .edit .calCell .unavailable {
-      background-color: #f2a972; }
-  .edit .editCalendar {
+  .edit #calendar {
     border: 2px solid #333;
+    margin-bottom: 2rem;
     border-bottom: 0;
     border-right: 0;
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%; }
-    .edit .editCalendar:last-child {
+    .edit #calendar:last-child {
       margin-right: 0; }
-  .edit .info {
+    @media screen and (max-width: 550px)  {
+      .edit #calendar {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .edit #calendar:last-child {
+          margin-right: 0; } }
+  .edit .moreInfo {
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 1rem; }
+  .edit .exampleCell {
+    display: inline-block;
+    float: right;
+    margin-left: 1rem;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #333;
+    text-align: center; }
+  .edit #info {
+    margin-bottom: 2rem;
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%; }
-    .edit .info:last-child {
+    .edit #info:last-child {
       margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      .edit #info {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .edit #info:last-child {
+          margin-right: 0; } }
+    .edit #info .fa-stack {
+      float: right;
+      font-size: 1rem; }
+
+#new {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 2rem; }
+  #new:after {
+    content: "";
+    display: table;
+    clear: both; }
+  #new h2, #new form {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    #new h2:last-child, #new form:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      #new h2, #new form {
+        margin-left: 0%;
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        #new h2:last-child, #new form:last-child {
+          margin-right: 0; } }
+  #new form {
+    margin-bottom: 4rem; }

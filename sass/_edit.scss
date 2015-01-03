@@ -1,9 +1,20 @@
 .edit{
-  .highlight{
-    color: $blue;
+  @include outer-container();
+  margin:0 2rem;
+  .noon{
+    border-top:1px solid $dark-gray;
+    border-bottom:1px solid $dark-gray;
   }
-  width:80%;
-  margin:auto;
+  .morning, .noon, .night{
+    background-color: #dfa;
+    height: 33.3%;
+  }
+  h2{
+    margin-bottom: 2rem;
+  }
+  .unavailable{
+    background-color: lighten($blue, 30);
+  }
   .calCell{
     @include user-select(none);
     float: left;
@@ -12,26 +23,42 @@
     height:40px;
     border-right:2px solid $dark-gray;
     border-bottom:2px solid $dark-gray;
-    .noon{
-      border-top:1px solid $dark-gray;
-      border-bottom:1px solid $dark-gray;
-    }
-    .morning, .noon, .night{
-      background-color: #dfa;
-      height: 33.3%;
-    }
-    .unavailable{
-      background-color: lighten($blue, 30);
-    }
   }
-  .editCalendar{
+  #calendar{
     border: 2px solid $dark-gray;
+    margin-bottom:2rem;
     border-bottom: 0;
     border-right: 0;
     @include span-columns(6);
+    @include media($mobile){
+      @include span-columns(12);
+    }
   }
-  .info{
+  .moreInfo{
+    background-color:lighten($light-gray, 20);
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+  }
+  .exampleCell{
+    display: inline-block;
+    float:right;
+    margin-left:1rem;
+    width: 80px;
+    height:80px;
+    border:2px solid $dark-gray;
+    text-align: center;
+  }
+  #info{
+    margin-bottom: 2rem;
     @include span-columns(6);
+    @include media($mobile){
+      @include span-columns(12);
+    }
+    .fa-stack{
+      float: right;
+      font-size: 1rem;
+    }
   }
 }
  

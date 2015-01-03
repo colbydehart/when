@@ -1,22 +1,19 @@
-
-<h2>Edit your event</h2>
-<form name="newForm" novalidate ng-submit="newForm.$valid && createEvent()">
-  <div class="group">
-  	<label>Name</label>
-  	<input type="text" ng-model="event.name">
-  </div>
-  <div class="group">
-  	<label>First possible date</label>
-  	<input name="start" type="date" ng-model="start" required>
-  </div>
-  <div class="group" ng-show="newForm.start.$valid">
-  	<label>Last possible date</label>
-  	<input name="end" type="date" ng-model="end" required>
-  </div>
-  <!-- TODO list of participants for events -->
-  <!-- <div class="group"> -->
-  <!-- 	<label>Who should do you want to come</label> -->
-  <!-- 	<input type="text" ng-model="event.participants"> -->
-  <!-- </div> -->
-  <button type="submit" ng-show="+end > +start && newForm.end.$valid">Submit</button>
-</form>
+<div id="new">
+	
+	<h2>Edit your event</h2>
+	<form name="newForm" novalidate ng-submit="newForm.$valid && createEvent()">
+	  <div class="group">
+	  	<label>Name</label>
+	  	<input type="text" ng-model="event.name">
+	  </div>
+	  <div class="group">
+	  	<label>First possible date</label>
+	  	<input name="start" type="date" ng-model="start" required>
+	  </div>
+	  <div class="group" ng-show="newForm.start.$valid">
+	  	<label>Last possible date</label>
+	  	<input name="end" type="date" ng-model="end" required>
+	  </div>
+	  <button type="submit" ng-show="+end > +start && newForm.end.$valid">Submit</button>
+	</form>
+</div>

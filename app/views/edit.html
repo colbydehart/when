@@ -1,6 +1,21 @@
 <div class="edit">
-  <div class="info">
-    <h2 class="highlight">{{event.name}}</h2>
+  <div id="info">
+    <h2 class="highlight">
+      {{event.name}}
+      <a ng-click="moreInfo=!moreInfo" class="fa-stack fa">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-info fa-inverse fa-stack-1x"></i>
+      </a>
+    </h2>
+    <div ng-show="moreInfo" class="moreInfo">
+      <div class="exampleCell">
+        <div class="morning">Morning</div>
+        <div class="noon">Noon</div>
+        <div class="night">Night</div>
+      </div>
+      Green means available and red means someone is unavailable 
+      Days are separated by morning, noon and night as shown here. 
+    </div>
     It looks like these times are good for
     <span ng-repeat="(key, part) in mergedCal.names">
       <span ng-if="!$first && !($last && $index===1)">, </span>
@@ -14,7 +29,7 @@
     </span>
     You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
   </div>
-	<div class="editCalendar">
+	<div id="calendar">
     <div class="calCell" ng-repeat="day in daysToFill">
     </div>
 		<div class="calCell" ng-repeat="day in mergedCal.calendar">
