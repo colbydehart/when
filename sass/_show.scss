@@ -1,8 +1,3 @@
-.selector{
-  background-color:rgba(0, 150, 150, 0.4);
-  position: absolute;
-}
-
 @mixin calButton($x, $y){
     $button: #cccddd;
     box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), $x $y 2px rgba(0, 0, 0, 0.2);
@@ -16,17 +11,42 @@
       box-shadow: inset 0 0 3px rgba(0, 0 ,0, 0.4);
     }
 }
+.selector{
+  background-color:rgba(0, 150, 150, 0.4);
+  position: absolute;
+}
 
 .show{
-  width:80%;
-  margin:auto;
-  .calRepeater{
+  @include outer-container();
+  @include media($mobile){
+    margin: 0 2rem;
+  }
+  .explanation, .footingText {
+    @include span-columns(8);
+    @include shift(2);
+    @include media($mobile){
+      @include shift(0);
+      @include span-columns(12);
+    }
+  }
+  #noUser{
+    @include span-columns(8);
+    @include shift(2);
+    @include media($mobile){
+      @include shift(1);
+      @include span-columns(10);
+    }
+  }
+  #calendar{
+    @include span-columns(10);
+    @include shift(1);
     position: relative;
+    margin-bottom:2rem
   }
   .dayCell{
     @include user-select(none);
-    @include transform(translateX(-2px));
     @include calButton(0, -2px);
+    padding: 0;
     margin-top: 30px;
     position: relative;
     float: left;
@@ -41,17 +61,21 @@
   }
   .weekCell{
     @include user-select(none);
+    @include calButton(-2px, 0);
     height:82px;
     width:1.5rem;
-    overflow: hidden;
-    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     left: -1.5rem;
+    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     position: absolute;
     border:1px solid $dark-gray;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    text-align: center;
     @include transform(translateY(-2px));
+    .weekPart{
+      height: 33.3%;
+      border-bottom: 1px solid $dark-gray;
+      &:last-child{border-bottom: none;}
+    }
   }
   .allWeekCell{
     @include user-select(none);
@@ -64,77 +88,48 @@
     border:1px solid $dark-gray;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
-    text-align: center;
-  }
-  .weekPart{
-    height: 33.3%;
-    @include calButton(0, 0);
-    border-bottom: 1px solid $dark-gray;
-    &:last-child{border-bottom: none;}
   }
   .calCell{
     @include user-select(none);
-    position: relative;
     float: left;
     width: calc(100% / 7) ;
+    position: relative;
     font-weight: bold;
     height:80px;
     border-right:2px solid $dark-gray;
     border-bottom:2px solid $dark-gray;
-    .noon{
-      border-top:1px solid $dark-gray;
-      border-bottom:1px solid $dark-gray;
-    }
-    .morning, .noon, .night{
-      background-color: #dfa;
-      height: 33.3%;
-    }
     .unavailable{
       background-color: lighten($blue, 30);
     }
   }
+  button{
+    @include row();
+    margin: 2rem auto;
+  }
+  h6{
+    @include span-columns(8);
+    @include shift(2);
+    @include media($mobile){
+      @include shift(0);
+      @include span-columns(12);
+    }
+  }
   .exampleCell{
-    @include user-select(none);
-    width: 100px;
-    margin-left:20px;
     display: inline-block;
+    float:right;
+    margin-left:1rem;
+    width: 100px;
     height:100px;
     font-weight: bold;
     border:2px solid $dark-gray;
     text-align: center;
-    .noon{
-      border-top:1px solid $dark-gray;
-      border-bottom:1px solid $dark-gray;
-    }
-    .morning, .noon, .night{
-      background-color: #dfa;
-      height: 33.3%;
-    }
   }
-  .explanation{
-    display: inline-block;
-    width: 70%;
+  .noon{
+    border-top:1px solid $dark-gray;
+    border-bottom:1px solid $dark-gray;
   }
-  .buffer{
-    // TODO fix this calendar
-    clear: both;
-    height: 2rem;
-  }
-  .cannotAttend{
-    display: block;
-    clear: both;
-    margin: auto;
-    border-radius: 30px;
-  }
-  .diagram{
-    display: inline-block;
-    width:25%;
-    float: right;
-    margin-top: 2rem;
-  }
-  .footingText{
-    padding: 2rem 0;
-    clear:both;
+  .morning, .noon, .night{
+    background-color: #dfa;
+    height: 33.3%;
   }
 }
- 

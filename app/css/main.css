@@ -479,23 +479,69 @@ footer {
   position: absolute; }
 
 .show {
-  width: 80%;
-  margin: auto; }
-  .show .calRepeater {
-    position: relative; }
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .show:after {
+    content: "";
+    display: table;
+    clear: both; }
+  @media screen and (max-width: 550px)  {
+    .show {
+      margin: 0 2rem; } }
+  .show .explanation, .show .footingText {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    .show .explanation:last-child, .show .footingText:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      .show .explanation, .show .footingText {
+        margin-left: 0%;
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .show .explanation:last-child, .show .footingText:last-child {
+          margin-right: 0; } }
+  .show #noUser {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    .show #noUser:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      .show #noUser {
+        margin-left: 8.5298%;
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 82.94039%; }
+        .show #noUser:last-child {
+          margin-right: 0; } }
+  .show #calendar {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%;
+    margin-left: 8.5298%;
+    position: relative;
+    margin-bottom: 2rem; }
+    .show #calendar:last-child {
+      margin-right: 0; }
   .show .dayCell {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-transform: translateX(-2px);
-    -moz-transform: translateX(-2px);
-    -ms-transform: translateX(-2px);
-    -o-transform: translateX(-2px);
-    transform: translateX(-2px);
     box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 -2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
     background-color: #cccddd;
+    padding: 0;
     margin-top: 30px;
     position: relative;
     float: left;
@@ -517,21 +563,32 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), -2px 0 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    background-color: #cccddd;
     height: 82px;
     width: 1.5rem;
-    overflow: hidden;
-    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     left: -1.5rem;
+    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
     position: absolute;
     border: 1px solid #333;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    text-align: center;
     -webkit-transform: translateY(-2px);
     -moz-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
     -o-transform: translateY(-2px);
     transform: translateY(-2px); }
+    .show .weekCell:hover {
+      background-color: #9ea0be; }
+    .show .weekCell:active {
+      background-color: #7073a0;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
+    .show .weekCell .weekPart {
+      height: 33.3%;
+      border-bottom: 1px solid #333; }
+      .show .weekCell .weekPart:last-child {
+        border-bottom: none; }
   .show .allWeekCell {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -551,83 +608,65 @@ footer {
     position: absolute;
     border: 1px solid #333;
     border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center; }
+    border-top-right-radius: 10px; }
     .show .allWeekCell:hover {
       background-color: #9ea0be; }
     .show .allWeekCell:active {
       background-color: #7073a0;
       box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
-  .show .weekPart {
-    height: 33.3%;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 2px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    background-color: #cccddd;
-    border-bottom: 1px solid #333; }
-    .show .weekPart:hover {
-      background-color: #9ea0be; }
-    .show .weekPart:active {
-      background-color: #7073a0;
-      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
-    .show .weekPart:last-child {
-      border-bottom: none; }
   .show .calCell {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    position: relative;
     float: left;
     width: calc(100% / 7);
+    position: relative;
     font-weight: bold;
     height: 80px;
     border-right: 2px solid #333;
     border-bottom: 2px solid #333; }
-    .show .calCell .noon {
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333; }
-    .show .calCell .morning, .show .calCell .noon, .show .calCell .night {
-      background-color: #dfa;
-      height: 33.3%; }
     .show .calCell .unavailable {
       background-color: #f2a972; }
+  .show button {
+    display: block;
+    margin: 2rem auto; }
+    .show button:after {
+      content: "";
+      display: table;
+      clear: both; }
+  .show h6 {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    .show h6:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 550px)  {
+      .show h6 {
+        margin-left: 0%;
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .show h6:last-child {
+          margin-right: 0; } }
   .show .exampleCell {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    width: 100px;
-    margin-left: 20px;
     display: inline-block;
+    float: right;
+    margin-left: 1rem;
+    width: 100px;
     height: 100px;
     font-weight: bold;
     border: 2px solid #333;
     text-align: center; }
-    .show .exampleCell .noon {
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333; }
-    .show .exampleCell .morning, .show .exampleCell .noon, .show .exampleCell .night {
-      background-color: #dfa;
-      height: 33.3%; }
-  .show .explanation {
-    display: inline-block;
-    width: 70%; }
-  .show .buffer {
-    clear: both;
-    height: 2rem; }
-  .show .cannotAttend {
-    display: block;
-    clear: both;
-    margin: auto;
-    border-radius: 30px; }
-  .show .diagram {
-    display: inline-block;
-    width: 25%;
-    float: right;
-    margin-top: 2rem; }
-  .show .footingText {
-    padding: 2rem 0;
-    clear: both; }
+  .show .noon {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333; }
+  .show .morning, .show .noon, .show .night {
+    background-color: #dfa;
+    height: 33.3%; }
 
 .edit {
   width: 80%;

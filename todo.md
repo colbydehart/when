@@ -13,6 +13,7 @@
 - Bust login/register into directive modal
 - Set up password reset
 #Current
-- Show
+* Show
 - Edit
+- New
 
