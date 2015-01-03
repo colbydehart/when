@@ -15,15 +15,17 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
             function($routeParams, $location, $scope, data, cal){
-  data.getEvent($routeParams.id).$bindTo($scope, 'event').then(function() {
-    updateCalendar();
-    $scope.$watch('event', updateCalendar);
-    $scope.daysToFill = new Array('Sun Mon Tue Wed Thu Fri Sat'.split(' ').indexOf(
-      $scope.mergedCal.calendar[0].date.substr(0,3)
-    ));
-    for (var i = 0; i < $scope.daysToFill.length; i++) {
-      $scope.daysToFill[i] = i;
-    }
+  data.getEvent($routeParams.id).then(function(obj) {
+    obj.$bindTo($scope, 'event').then(function() {
+      updateCalendar();
+      $scope.$watch('event', updateCalendar);
+      $scope.daysToFill = new Array('Sun Mon Tue Wed Thu Fri Sat'.split(' ').indexOf(
+        $scope.mergedCal.calendar[0].date.substr(0,3)
+      ));
+      for (var i = 0; i < $scope.daysToFill.length; i++) {
+        $scope.daysToFill[i] = i;
+      }
+    });
   });
 
   function updateCalendar() {

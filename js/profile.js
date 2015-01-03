@@ -17,7 +17,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
   var vm = this;
   this.message = 'hello';
   
-  data.getEventsForUser().$bindTo($scope, 'events');
+  data.getEventsForUser($scope, 'events');
 
   $scope.addEvent = function(){
     $location.path('/events/new').search('name', $scope.newEvent); 

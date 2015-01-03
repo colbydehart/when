@@ -1,5 +1,5 @@
 <div id="auth">
-  <div class="warning" ng-if="error">Error: {{error.message}}</div>
+  <div class="warning" ng-if="error">{{error.message}}</div>
   <form ng-submit="authForm.$valid && submit()"
         name='authForm'
         novalidate>
@@ -10,6 +10,11 @@
     <div class="input">
       <label>Password</label>
       <input type="password" ng-model='user.password' required>
+    </div>
+    <div class="forgot">
+      <a href="#" ng-click="resetPassword($event)" ng-show="method === 'login' && user.email && !user.password">
+        Forgot your password?
+      </a>
     </div>
     <div class="input" ng-show="method === 'register'">
       <label>Repeat password</label>

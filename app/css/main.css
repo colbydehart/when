@@ -408,7 +408,11 @@ footer {
     width: 65.88078%; }
     #auth form:last-child {
       margin-right: 0; }
+  #auth .forgot {
+    text-align: center;
+    margin-bottom: 2rem; }
   #auth button {
+    margin-bottom: 2rem;
     float: left;
     display: block;
     margin-right: 3.57866%;
@@ -578,10 +582,8 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), -2px 0 2px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    background-color: #cccddd;
     height: 82px;
+    overflow: hidden;
     width: 1.5rem;
     left: -1.5rem;
     box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
@@ -594,14 +596,17 @@ footer {
     -ms-transform: translateY(-2px);
     -o-transform: translateY(-2px);
     transform: translateY(-2px); }
-    .show .weekCell:hover {
-      background-color: #9ea0be; }
-    .show .weekCell:active {
-      background-color: #7073a0;
-      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
     .show .weekCell .weekPart {
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), -2px 0 2px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+      background-color: #cccddd;
       height: 33.3%;
       border-bottom: 1px solid #333; }
+      .show .weekCell .weekPart:hover {
+        background-color: #9ea0be; }
+      .show .weekCell .weekPart:active {
+        background-color: #7073a0;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4); }
       .show .weekCell .weekPart:last-child {
         border-bottom: none; }
   .show .allWeekCell {

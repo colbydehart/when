@@ -67,8 +67,8 @@
   }
   .weekCell{
     @include user-select(none);
-    @include calButton(-2px, 0);
     height:82px;
+    overflow:hidden;
     width:1.5rem;
     left: -1.5rem;
     box-shadow: -2px 0 2px rgba(0, 0, 0, 0.4);
@@ -78,6 +78,7 @@
     border-top-left-radius: 10px;
     @include transform(translateY(-2px));
     .weekPart{
+      @include calButton(-2px, 0);
       height: 33.3%;
       border-bottom: 1px solid $dark-gray;
       &:last-child{border-bottom: none;}

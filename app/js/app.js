@@ -39,11 +39,20 @@ angular.module('auth', ['ngRoute', 'authFactory'])
 
   $scope.method = $location.path().replace('/','');
   $scope.matching = true;
-  //TODO more elegant error flashing
   if ($scope.method === 'logout'){
     auth.$unauth();
     $location.path('/');
   }
+
+  $scope.resetPassword = function(e) {
+    e.preventDefault();
+    auth.$sendPasswordResetEmail($scope.user.email).then(function() {
+      $scope.error = {message: 'Password reset email sent to ' + $scope.user.email};
+    })
+    .catch(function(error) {
+      $scope.error = error;
+    });
+  };
 
   $scope.submit = function(){
     if ($scope.method === 'login') {
@@ -157,16 +166,32 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
   };
 
   return {
-    getEventsForUser : function(cb){
+    getEventsForUser : function(scope, varName){
       var sync = $firebase(new Firebase(url + 'users/' + $rootScope.user.uid ));
-      return sync.$asObject();
+      return sync.$asObject().$bindTo(scope, varName);
     },
+
+
     addParticipant : function(cal, id) {
-      return $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal);
+      return $q(function(res, rej) {
+        $firebase(new Firebase(url+'events/'+id +'/participants')).$push(cal)
+        .then(function(ref) {
+          res(ref.key());
+        })
+        .catch(function(err) {
+          rej(err);
+        });
+      });
     },
-    getParticipant : function(id, user) {
-      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user)).$asObject();
+
+
+    getParticipant : function(id, user, scope, varName) {
+      return $firebase(new Firebase(url+'events/'+id+'/participants/'+user))
+        .$asObject()
+        .$bindTo(scope, varName);
     },
+
+
     addEvent : function(event, cb){
       var id, name = event.name;
       $firebase(new Firebase(url+'events')).$push(event)
@@ -182,19 +207,34 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
         console.log('Could not add event', err);
       });
     },
+
+
     getEvent : function(id){
-      return $firebase(new Firebase(url+'events/'+id)).$asObject();
+      return $q(function(res, rej) {
+        var event = $firebase(new Firebase(url+'events/'+id)).$asObject();
+        event.$loaded().then(function() {
+          if (!event.calendar)
+            rej('Event does not exist');
+          else
+            res(event);
+        }).catch(function(err) {
+          rej(err);
+        });
+      });
     },
+
+
     removeEvent : function(id) {
       var eventsSync = $firebase(new Firebase(url+'events')),
           userSync = $firebase(new Firebase(url+'users/' + $rootScope.user.uid));
-
       userSync.$remove(id).then(function(ref) {
         eventsSync.$remove(id);
       }, function(err) {
         console.log("Could not remove event: ", err);
       });
     },
+
+
     update : function(id, event) {
       return $firebase(new Firebase(url+'events')).$update(id, event);
     }
@@ -219,15 +259,17 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
 
 .controller('EditController', ['$routeParams', '$location', '$scope', 'data', 'cal', 
             function($routeParams, $location, $scope, data, cal){
-  data.getEvent($routeParams.id).$bindTo($scope, 'event').then(function() {
-    updateCalendar();
-    $scope.$watch('event', updateCalendar);
-    $scope.daysToFill = new Array('Sun Mon Tue Wed Thu Fri Sat'.split(' ').indexOf(
-      $scope.mergedCal.calendar[0].date.substr(0,3)
-    ));
-    for (var i = 0; i < $scope.daysToFill.length; i++) {
-      $scope.daysToFill[i] = i;
-    }
+  data.getEvent($routeParams.id).then(function(obj) {
+    obj.$bindTo($scope, 'event').then(function() {
+      updateCalendar();
+      $scope.$watch('event', updateCalendar);
+      $scope.daysToFill = new Array('Sun Mon Tue Wed Thu Fri Sat'.split(' ').indexOf(
+        $scope.mergedCal.calendar[0].date.substr(0,3)
+      ));
+      for (var i = 0; i < $scope.daysToFill.length; i++) {
+        $scope.daysToFill[i] = i;
+      }
+    });
   });
 
   function updateCalendar() {
@@ -340,7 +382,7 @@ angular.module('profile', ['ngRoute', 'dataFactory', 'calFactory' ])
   var vm = this;
   this.message = 'hello';
   
-  data.getEventsForUser().$bindTo($scope, 'events');
+  data.getEventsForUser($scope, 'events');
 
   $scope.addEvent = function(){
     $location.path('/events/new').search('name', $scope.newEvent); 
@@ -371,13 +413,19 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
 
 .controller('ShowController', ['$location', '$scope', 'data', '$routeParams', '$route', '$swipe', 
                       function( $location,   $scope,   data,   $routeParams,   $route,   $swipe){
-  var id = $routeParams.id;
-  $scope.noUser = false;
-  $scope.event = data.getEvent(id);
-  var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
+  var id = $routeParams.id,
+      days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
+  $scope.noUser = false;
+  data.getEvent(id).then(function(obj) {
+    $scope.event = obj;
+  }).catch(function(err) {
+    alert(err);
+    $location.path('/');
+  });
+
   if(localStorage[id]){
-    data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+    data.getParticipant(id, localStorage[id], $scope, 'calendar').then(fillInDays);
   }
   else{
     $scope.noUser = true;
@@ -390,8 +438,8 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     newParticipant.email = $scope.email;
     newParticipant.cal = _.clone($scope.event.calendar);
     data.addParticipant(newParticipant, id)
-    .then(function(ref) {
-      localStorage[id] = ref.key();
+    .then(function(key) {
+      localStorage[id] = key;
       data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
   };
@@ -449,17 +497,6 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
   }
 
   var $selector, X, Y, state;
-  $swipe.bind($(document), {
-    start: function(loc, e) {
-      beginSelection(e);
-    },
-    move : function(loc, e) {
-      moveSelection(e);
-    },
-    end : function(loc, e) {
-      endSelection(e);
-    }
-  });
   $scope.beginSelection = function(e) {
     e.preventDefault();
     $(document).on('mouseup', endSelection);

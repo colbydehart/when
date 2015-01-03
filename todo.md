@@ -1,13 +1,5 @@
-#Refactoring
-- Remove angularFire methods from other modules for orthagonality
-- Fix the crazy formatting on show page
 #Calendars
 - Show calendar excluding certain participants if no one is available
 - Edit calendar name on edit page
 - After linking from profile, make location be the actual link
-#Responsive
-- Change selection on mobile or disable (try jquery mobile or angular touch events)
-#Authentication/Authorization
-- Bust login/register into directive modal
-- Set up password reset
 #Current

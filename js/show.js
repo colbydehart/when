@@ -14,13 +14,19 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
 
 .controller('ShowController', ['$location', '$scope', 'data', '$routeParams', '$route', '$swipe', 
                       function( $location,   $scope,   data,   $routeParams,   $route,   $swipe){
-  var id = $routeParams.id;
-  $scope.noUser = false;
-  $scope.event = data.getEvent(id);
-  var days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
+  var id = $routeParams.id,
+      days = 'Sun Mon Tue Wed Thu Fri Sat'.split(' ');
   $scope.days = _.zip(days, '0 1 2 3 4 5 6'.split(' '));
+  $scope.noUser = false;
+  data.getEvent(id).then(function(obj) {
+    $scope.event = obj;
+  }).catch(function(err) {
+    alert(err);
+    $location.path('/');
+  });
+
   if(localStorage[id]){
-    data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+    data.getParticipant(id, localStorage[id], $scope, 'calendar').then(fillInDays);
   }
   else{
     $scope.noUser = true;
@@ -33,8 +39,8 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     newParticipant.email = $scope.email;
     newParticipant.cal = _.clone($scope.event.calendar);
     data.addParticipant(newParticipant, id)
-    .then(function(ref) {
-      localStorage[id] = ref.key();
+    .then(function(key) {
+      localStorage[id] = key;
       data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
     });
   };
@@ -92,17 +98,6 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
   }
 
   var $selector, X, Y, state;
-  $swipe.bind($(document), {
-    start: function(loc, e) {
-      beginSelection(e);
-    },
-    move : function(loc, e) {
-      moveSelection(e);
-    },
-    end : function(loc, e) {
-      endSelection(e);
-    }
-  });
   $scope.beginSelection = function(e) {
     e.preventDefault();
     $(document).on('mouseup', endSelection);

@@ -28,11 +28,20 @@ angular.module('auth', ['ngRoute', 'authFactory'])
 
   $scope.method = $location.path().replace('/','');
   $scope.matching = true;
-  //TODO more elegant error flashing
   if ($scope.method === 'logout'){
     auth.$unauth();
     $location.path('/');
   }
+
+  $scope.resetPassword = function(e) {
+    e.preventDefault();
+    auth.$sendPasswordResetEmail($scope.user.email).then(function() {
+      $scope.error = {message: 'Password reset email sent to ' + $scope.user.email};
+    })
+    .catch(function(error) {
+      $scope.error = error;
+    });
+  };
 
   $scope.submit = function(){
     if ($scope.method === 'login') {
