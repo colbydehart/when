@@ -15,19 +15,24 @@
       </div>
       Green means available and red means someone is unavailable 
       Days are separated by morning, noon and night as shown here. 
+      You can view individual calendars by hovering over them.
     </div>
-    It looks like these times are good for
-    <span ng-repeat="(key, part) in mergedCal.names">
-      <span ng-if="!$first && !($last && $index===1)">, </span>
-      <span ng-if="$last && !$first">and </span>
-      {{part.name}}</span>.
-    <span ng-if=mergedCal.unavailable.length>Unfortunately, 
-      <span ng-repeat="(key, part) in mergedCal.unavailable">
-        <span ng-if="!$first && !($last && $index===1)">, </span>
-        <span ng-if="$last && !$first">and </span>
-        {{part.name}}</span> will not be able to attend.
-    </span>
-    You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
+    <div id="available">
+    	It looks like these times are good for
+    	<span ng-repeat="(key, part) in mergedCal.names">
+    	  <span ng-if="!$first && !($last && $index===1)">, </span>
+    	  <span ng-if="$last && !$first">and </span>
+    	  <a ng-mouseover="showCalendar(part.name)"
+    	     ng-mouseleave="revertCalendar()">{{part.name}}</a></span>.
+    	<span ng-if=mergedCal.unavailable.length>Unfortunately, 
+    	  <span ng-repeat="(key, part) in mergedCal.unavailable">
+    	    <span ng-if="!$first && !($last && $index===1)">, </span>
+    	    <span ng-if="$last && !$first">and </span>
+    	    <a ng-mouseover="showCalendar(part.name)"
+             ng-mouseleave="revertCalendar()">{{part.name}}</a></span> will not be able to attend.
+    	</span>
+    	You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
+    </div>
   </div>
 	<div id="calendar">
     <div class="calCell" ng-repeat="day in daysToFill">

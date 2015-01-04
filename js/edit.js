@@ -28,8 +28,21 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
     });
   });
 
+  var showing = false;
+  $scope.showCalendar = function(name) {
+    showing = true;
+    $scope.mergedCal.calendar = _.find($scope.event.participants, {'name': name}).cal;
+  };
+
+  $scope.revertCalendar = function() {
+    showing = false;
+    updateCalendar();
+  };
+
   function updateCalendar() {
-    $scope.mergedCal = cal.merge(_.cloneDeep($scope.event));  
+    if (!showing){
+      $scope.mergedCal = cal.merge(_.cloneDeep($scope.event));  
+    }
   }
 }]);
 
