@@ -28,8 +28,7 @@
     	  <span ng-repeat="(key, part) in mergedCal.unavailable">
     	    <span ng-if="!$first && !($last && $index===1)">, </span>
     	    <span ng-if="$last && !$first">and </span>
-    	    <a ng-mouseover="showCalendar(part.name)"
-             ng-mouseleave="revertCalendar()">{{part.name}}</a></span> will not be able to attend.
+    	    <a>{{part.name}}</a></span> will not be able to attend.
     	</span>
     	You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
     </div>

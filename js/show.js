@@ -26,7 +26,7 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
   });
 
   if(localStorage[id]){
-    data.getParticipant(id, localStorage[id], $scope, 'calendar').then(fillInDays);
+    data.getParticipant(id, localStorage[id], $scope, 'calendar').then(initializeCalendar);
   }
   else{
     $scope.noUser = true;
@@ -41,12 +41,18 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     data.addParticipant(newParticipant, id)
     .then(function(key) {
       localStorage[id] = key;
-      data.getParticipant(id, localStorage[id]).$bindTo($scope, 'calendar').then(fillInDays);
+      var part = data.getParticipant(id, localStorage[id]);
+      part.$bindTo($scope, 'calendar').then(initializeCalendar);
     });
   };
 
   $scope.cannotAttend = function() {
     $scope.calendar.unavailable = !$scope.calendar.unavailable;
+    if(!$scope.calendar.unavailable){
+      _.forEach($scope.calendar.cal, function(day) {
+        day.morning = day.noon = day.night = true;
+      });
+    }
   };
 
   $scope.toggleWeek = function(time, index){
@@ -73,6 +79,7 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
         i++;
       }
     }
+    checkAvailability();
   };
 
   $scope.toggleDay = function(dayIndex) {
@@ -88,13 +95,27 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
         $scope.calendar.cal[i].night = state;
       }
     }
+    checkAvailability();
   };
 
-  function fillInDays() {
+  function initializeCalendar() {
     $scope.daysToFill = new Array(days.indexOf($scope.calendar.cal[0].date.substr(0,3)));
     for (var i = 0; i < $scope.daysToFill.length; i++) {
       $scope.daysToFill[i] = i;
     }
+  }
+
+  function checkAvailability() {
+    var unavailable = true,
+        cal = $scope.calendar.cal,
+        cur;
+    for (var i = 0; i < cal.length; i++) {
+      if(cal[i].morning || cal[i].noon || cal[i].night){
+        unavailable = false;
+      }
+    }
+    console.log('checked');
+    $scope.calendar.unavailable = unavailable;
   }
 
   var $selector, X, Y, state;
@@ -153,6 +174,7 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     $selector.remove();
     X = Y = state =  null;
     $(document).off('mouseup', endSelection);
+    checkAvailability();
     return false;
   }
   

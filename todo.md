@@ -3,4 +3,4 @@
 - Edit calendar name on edit page
 - After linking from profile, make location be the actual link
 #Current
-- Set as unavailable on showpage if all days selected
+* Set as unavailable on showpage if all days selected
