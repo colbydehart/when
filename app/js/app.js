@@ -96,38 +96,71 @@ angular.module('calFactory', [])
     merge : merge
   };
 
-  function merge(event) {
-    var result = {
-      names : [],
-      unavailable : [],
-      emails : [],
-      calendar : _.clone(event.calendar)
-    }, 
-        len = result.calendar.length;
+  
+  function merge(event, skip) {
+    if (!event.participants[0]){
+      event.participants = _.values(event.participants);
+    }
+    var parts = event.participants,
+        len = parts.length,
+        skipTemp = skip,
+        maxSkip = (len*(len+1))/2 - 4,
+        result = {
+          names : [],
+          unavailable : [],
+          emails : [],
+          calendar : _.cloneDeep(event.calendar)
+        };
 
-    angular.forEach(event.participants, function(val, key) {
-      if (val.unavailable) {
-        result.unavailable.push({name: val.name});
+    for (var i = parts.length-1; i >= 0; i--) {
+      var curPart = parts[i];
+      if(skipTemp >= len){
+        result.unavailable.push({name: curPart.name});
+        skipTemp -= len;
+      }
+      else if(skipTemp === i){
+        result.unavailable.push({name: curPart.name});
+      }
+      else if(curPart.unavailable){
+        result.unavailable.push({name: curPart.name});
       }
       else{
-        result.names.push({name: val.name});
-        result.emails.push(val.email);
-        for (var i = 0; i < len; i++) {
-          var curDay = val.cal[i],
-              resDay = result.calendar[i];
-          _.merge(resDay, curDay, function(a, b) {
-            if (_.isString(a)) return a;
-            return a && b;
-          });
+        result.names.push({name: curPart.name});
+        result.emails.push(curPart.email);
+        for (var j = 0; j < curPart.cal.length ; j++) {
+          _.merge(result.calendar[j], curPart.cal[j], mergeDays);
         }
       }
-
-    });
-
+    }
     result.emails = result.emails.join(',');
-    return result;
-    
+
+    if(availableDates(result.calendar)){
+      return result;
+    }
+    else if (skip === maxSkip){
+      result.impossible = true;
+      return result;
+    }
+    else{
+      return merge(event, skip>-1?skip+1:0);
+    }
   }
+
+  function availableDates(cal) {
+    var res = false;
+    for (var i = 0; i < cal.length; i++) {
+      if(cal[i].morning || cal[i].noon || cal[i].night){
+        res = true;
+      }
+    }
+    return res;
+  }
+
+  function mergeDays(a, b) {
+    if (_.isString(a)) return a;
+    return a && b;
+  }
+
   function convertDates(cal) {
     return _.values(cal).map(function(item) {
       return new Date(item);
@@ -272,6 +305,10 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
     });
   });
 
+  $scope.editName = function(e) {
+    $scope.event.name = prompt('Enter a new name for the event', $scope.event.name) || $scope.event.name;
+  };
+
   var showing = false;
   $scope.showCalendar = function(name) {
     showing = true;
@@ -371,6 +408,7 @@ angular.module('new', ['ngRoute', 'calFactory'])
     e.owner = $rootScope.user.uid;
     data.addEvent(e, function(id) {
       $location.path('event/' + id);
+      $scope.$apply();
     });
   };
 }]);
@@ -453,8 +491,7 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     data.addParticipant(newParticipant, id)
     .then(function(key) {
       localStorage[id] = key;
-      var part = data.getParticipant(id, localStorage[id]);
-      part.$bindTo($scope, 'calendar').then(initializeCalendar);
+      data.getParticipant(id, localStorage[id], $scope, 'calendar').then(initializeCalendar);
     });
   };
 
@@ -526,7 +563,6 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
         unavailable = false;
       }
     }
-    console.log('checked');
     $scope.calendar.unavailable = unavailable;
   }
 

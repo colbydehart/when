@@ -28,6 +28,10 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
     });
   });
 
+  $scope.editName = function(e) {
+    $scope.event.name = prompt('Enter a new name for the event', $scope.event.name) || $scope.event.name;
+  };
+
   var showing = false;
   $scope.showCalendar = function(name) {
     showing = true;

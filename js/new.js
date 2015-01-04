@@ -25,6 +25,7 @@ angular.module('new', ['ngRoute', 'calFactory'])
     e.owner = $rootScope.user.uid;
     data.addEvent(e, function(id) {
       $location.path('event/' + id);
+      $scope.$apply();
     });
   };
 }]);

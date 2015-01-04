@@ -269,7 +269,7 @@ footer {
     margin-right: 0; }
   .home button {
     text-align: center; }
-  @media screen and (max-width: 550px)  {
+  @media screen and (max-width: 675px)  {
     .home {
       margin-left: 8.5298%;
       float: left;
@@ -304,7 +304,7 @@ footer {
       width: 10%; }
     #profile #your-events:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       #profile #your-events {
         margin-left: 0%;
         float: left;
@@ -331,7 +331,7 @@ footer {
     width: 82.94039%; }
     #profile h3:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       #profile h3 {
         float: left;
         display: block;
@@ -350,7 +350,7 @@ footer {
     margin-bottom: 3rem; }
     #profile form:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       #profile form {
         margin-left: 0%;
         float: left;
@@ -368,7 +368,7 @@ footer {
       padding: 0.7rem; }
       #profile form input:last-child {
         margin-right: 0; }
-      @media screen and (max-width: 550px)  {
+      @media screen and (max-width: 675px)  {
         #profile form input {
           float: left;
           display: block;
@@ -383,7 +383,7 @@ footer {
       width: 28.01019%; }
       #profile form button:last-child {
         margin-right: 0; }
-      @media screen and (max-width: 550px)  {
+      @media screen and (max-width: 675px)  {
         #profile form button {
           float: left;
           display: block;
@@ -421,7 +421,7 @@ footer {
     text-align: center; }
     #auth button:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       #auth button {
         float: left;
         display: block;
@@ -501,7 +501,7 @@ footer {
     content: "";
     display: table;
     clear: both; }
-  @media screen and (max-width: 550px)  {
+  @media screen and (max-width: 675px)  {
     .show {
       margin: 0 2rem; } }
   .show .footingText {
@@ -514,7 +514,7 @@ footer {
     margin-left: 17.05961%; }
     .show .explanation:last-child, .show .footingText:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       .show .explanation, .show .footingText {
         margin-left: 0%;
         float: left;
@@ -533,7 +533,7 @@ footer {
     margin-left: 17.05961%; }
     .show #noUser:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       .show #noUser {
         margin-left: 8.5298%;
         float: left;
@@ -660,7 +660,7 @@ footer {
     margin-left: 17.05961%; }
     .show h6:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       .show h6 {
         margin-left: 0%;
         float: left;
@@ -710,13 +710,13 @@ footer {
     -ms-user-select: none;
     user-select: none;
     float: left;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
     width: calc(100% / 7);
-    height: 40px;
-    border-right: 2px solid #333;
-    border-bottom: 2px solid #333; }
+    height: 60px;
+    border: 2px solid #333; }
   .edit #calendar {
-    border: 2px solid #333;
     margin-bottom: 2rem;
     border-bottom: 0;
     border-right: 0;
@@ -726,7 +726,7 @@ footer {
     width: 48.82117%; }
     .edit #calendar:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       .edit #calendar {
         float: left;
         display: block;
@@ -755,7 +755,7 @@ footer {
     width: 48.82117%; }
     .edit #info:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       .edit #info {
         float: left;
         display: block;
@@ -784,7 +784,7 @@ footer {
     margin-left: 17.05961%; }
     #new h2:last-child, #new form:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 550px)  {
+    @media screen and (max-width: 675px)  {
       #new h2, #new form {
         margin-left: 0%;
         float: left;

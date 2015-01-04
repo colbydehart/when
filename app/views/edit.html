@@ -1,7 +1,8 @@
 <div class="edit">
   <div id="info">
-    <h2 class="highlight">
-      {{event.name}}
+    <h2>
+      Here is <span class="highlight">when</span> you can
+      <a class="highlight" ng-click="editName($event)">{{event.name}}</a>.
       <a ng-click="moreInfo=!moreInfo" class="fa-stack fa">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-info fa-inverse fa-stack-1x"></i>
@@ -18,30 +19,32 @@
       You can view individual calendars by hovering over them.
     </div>
     <div id="available">
-    	It looks like these times are good for
-    	<span ng-repeat="(key, part) in mergedCal.names">
-    	  <span ng-if="!$first && !($last && $index===1)">, </span>
-    	  <span ng-if="$last && !$first">and </span>
-    	  <a ng-mouseover="showCalendar(part.name)"
-    	     ng-mouseleave="revertCalendar()">{{part.name}}</a></span>.
-    	<span ng-if=mergedCal.unavailable.length>Unfortunately, 
-    	  <span ng-repeat="(key, part) in mergedCal.unavailable">
-    	    <span ng-if="!$first && !($last && $index===1)">, </span>
-    	    <span ng-if="$last && !$first">and </span>
-    	    <a>{{part.name}}</a></span> will not be able to attend.
-    	</span>
-    	You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
+      It looks like these times are good for
+      <span ng-repeat="(key, part) in mergedCal.names">
+        <span ng-if="!$first && !($last && $index===1)">, </span>
+        <span ng-if="$last && !$first">and </span>
+        <a ng-mouseover="showCalendar(part.name)"
+           ng-mouseleave="revertCalendar()">{{part.name}}</a></span>.
+      <span ng-if=mergedCal.unavailable.length>Unfortunately, 
+        <span ng-repeat="(key, part) in mergedCal.unavailable">
+          <span ng-if="!$first && !($last && $index===1)">, </span>
+          <span ng-if="$last && !$first">and </span>
+          <a ng-mouseover="showCalendar(part.name)"
+             ng-mouseleave="revertCalendar()">{{part.name}}</a></span>
+          will not be able to attend.
+      </span>
+      You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
     </div>
   </div>
-	<div id="calendar">
+  <div id="calendar">
     <div class="calCell" ng-repeat="day in daysToFill">
     </div>
-		<div class="calCell" ng-repeat="day in mergedCal.calendar">
-		   <div class="morning" ng-class="{'unavailable' : !day.morning}">
-		     {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
-		   </div>
-		   <div class="noon" ng-class="{'unavailable' : !day.noon}"> </div>
-		   <div class="night" ng-class="{'unavailable' : !day.night}"> </div>
-		</div>
-	</div>
+    <div class="calCell" ng-repeat="day in mergedCal.calendar">
+       <div class="morning" ng-class="{'unavailable' : !day.morning}">
+         {{(day.date.substr(8,2) === "01") || $index === 0 ?  day.date.substr(4,6) : day.date.substr(8,3)}}
+       </div>
+       <div class="noon" ng-class="{'unavailable' : !day.noon}"> </div>
+       <div class="night" ng-class="{'unavailable' : !day.night}"> </div>
+    </div>
+  </div>
 </div>

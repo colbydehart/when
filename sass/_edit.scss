@@ -18,14 +18,14 @@
   .calCell{
     @include user-select(none);
     float: left;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
     width: calc(100% / 7) ;
-    height:40px;
-    border-right:2px solid $dark-gray;
-    border-bottom:2px solid $dark-gray;
+    height:60px;
+    border:2px solid $dark-gray;
   }
   #calendar{
-    border: 2px solid $dark-gray;
     margin-bottom:2rem;
     border-bottom: 0;
     border-right: 0;

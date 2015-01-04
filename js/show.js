@@ -41,8 +41,7 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
     data.addParticipant(newParticipant, id)
     .then(function(key) {
       localStorage[id] = key;
-      var part = data.getParticipant(id, localStorage[id]);
-      part.$bindTo($scope, 'calendar').then(initializeCalendar);
+      data.getParticipant(id, localStorage[id], $scope, 'calendar').then(initializeCalendar);
     });
   };
 
@@ -114,7 +113,6 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
         unavailable = false;
       }
     }
-    console.log('checked');
     $scope.calendar.unavailable = unavailable;
   }
 
