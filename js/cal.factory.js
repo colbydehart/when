@@ -47,11 +47,15 @@ angular.module('calFactory', [])
     }
     result.emails = result.emails.join(',');
 
-    if(availableDates(result.calendar)){
+    if(availableDates(result.calendar) && result.names.length > 1){
       return result;
     }
     else if (skip === maxSkip){
       result.impossible = true;
+      result.names = result.names.concat(result.unavailable);
+      for (var x = 0; x < result.calendar.length; x++) {
+        result.calendar[x].morning = result.calendar[x].night = result.calendar[x].night = false;
+      }
       return result;
     }
     else{

@@ -1,4 +1,4 @@
 #Calendars
-* Show calendar excluding certain participants if no one is available
+* Handle impossible case for edit calendar
 - Use form.$error for error messages
 #Current

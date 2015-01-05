@@ -47,11 +47,9 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
 
   $scope.cannotAttend = function() {
     $scope.calendar.unavailable = !$scope.calendar.unavailable;
-    if(!$scope.calendar.unavailable){
-      _.forEach($scope.calendar.cal, function(day) {
-        day.morning = day.noon = day.night = true;
-      });
-    }
+    _.forEach($scope.calendar.cal, function(day) {
+      day.morning = day.noon = day.night = !$scope.calendar.unavailable;
+    });
   };
 
   $scope.toggleWeek = function(time, index){

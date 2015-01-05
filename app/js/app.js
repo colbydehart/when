@@ -134,11 +134,15 @@ angular.module('calFactory', [])
     }
     result.emails = result.emails.join(',');
 
-    if(availableDates(result.calendar)){
+    if(availableDates(result.calendar) && result.names.length > 1){
       return result;
     }
     else if (skip === maxSkip){
       result.impossible = true;
+      result.names = result.names.concat(result.unavailable);
+      for (var x = 0; x < result.calendar.length; x++) {
+        result.calendar[x].morning = result.calendar[x].night = result.calendar[x].night = false;
+      }
       return result;
     }
     else{
@@ -497,11 +501,9 @@ angular.module('show', ['ngRoute', 'ngTouch', 'dataFactory'])
 
   $scope.cannotAttend = function() {
     $scope.calendar.unavailable = !$scope.calendar.unavailable;
-    if(!$scope.calendar.unavailable){
-      _.forEach($scope.calendar.cal, function(day) {
-        day.morning = day.noon = day.night = true;
-      });
-    }
+    _.forEach($scope.calendar.cal, function(day) {
+      day.morning = day.noon = day.night = !$scope.calendar.unavailable;
+    });
   };
 
   $scope.toggleWeek = function(time, index){

@@ -18,7 +18,7 @@
       Days are separated by morning, noon and night as shown here. 
       You can view individual calendars by hovering over them.
     </div>
-    <div id="available">
+    <div id="available" ng-show="!mergedCal.impossible">
       It looks like these times are good for
       <span ng-repeat="(key, part) in mergedCal.names">
         <span ng-if="!$first && !($last && $index===1)">, </span>
@@ -34,6 +34,17 @@
           will not be able to attend.
       </span>
       You can email everyone who is available by clicking this <a href="mailto:{{mergedCal.emails}}">link</a>
+    </div>
+    <div class="impossible" ng-show="mergedCal.impossible">
+      <span ng-if=mergedCal.unavailable.length>Unfortunately, 
+      no two people will be able to attend this event. You may still
+      hover over names to see availabilities. The participants were
+        <span ng-repeat="(key, part) in mergedCal.unavailable">
+          <span ng-if="!$first && !($last && $index===1)">, </span>
+          <span ng-if="$last && !$first">and </span>
+          <a ng-mouseover="showCalendar(part.name)"
+             ng-mouseleave="revertCalendar()">{{part.name}}</a></span>.
+      </span>
     </div>
   </div>
   <div id="calendar">
