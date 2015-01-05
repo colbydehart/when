@@ -12,7 +12,7 @@ angular.module('calFactory', [])
   
   function merge(event, skip) {
     if (!event.participants[0]){
-      event.participants = _.values(event.participants);
+      event.participants = _(event.participants).values().sortBy(busySort).value();
     }
     var parts = event.participants,
         len = parts.length,
@@ -63,6 +63,19 @@ angular.module('calFactory', [])
     }
   }
 
+  function busySort(part){
+    var count = 0;
+    for (var i = 0; i < part.cal.length; i++) {
+      if(part.cal[i].morning)
+        count++;
+      if(part.cal[i].noon)
+        count++;
+      if(part.cal[i].night)
+        count++;
+    }
+    return count;
+  }
+
   function availableDates(cal) {
     var res = false;
     for (var i = 0; i < cal.length; i++) {
@@ -83,6 +96,7 @@ angular.module('calFactory', [])
       return new Date(item);
     });
   }
+
   function newCal(start, end) {
     var cal = [];
     var today = start;

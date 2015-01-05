@@ -24,7 +24,7 @@ gulp.task('build',['js', 'sass'], function() {
 });
 
 gulp.task('lr', function() {
-  gulp.src('./app/*') 
+  gulp.src('./app/**/*') 
     .pipe($.connect.reload());
 });
 
