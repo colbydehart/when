@@ -41,6 +41,11 @@ footer{
   color: $blue;
 }
 
+.warning{
+  @include row();
+  color: #f55;
+}
+
 .content{
   margin-top: 120px;
   margin-bottom:50px;

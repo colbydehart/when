@@ -29,9 +29,18 @@
     <h2 class="highlight">{{event.name}}</h2>
     <form novalidate name="newPart" ng-submit="newPart.$valid && createCalendar()">
       <label>Enter your name</label>
-      <input type="text" ng-model="userName" required>
+      <input name="username" type="text" ng-model="userName" required>
+      <div class="warning" ng-show="newPart.username.$error.required && newPart.username.$dirty">
+        You must enter a name.
+      </div>
       <label>and email</label>
-      <input type="email" ng-model="email" required>
+      <input type="email" name="email" ng-model="email" required>
+      <div class="warning" ng-show="newPart.email.$error.required && newPart.email.$dirty">
+        You need to enter an email so that the owner of this event can get in touch with you.
+      </div>
+      <div class="warning" ng-show="newPart.email.$error.email && newPart.$submitted">
+        Not a valid email.
+      </div>
       <button type="submit">Enter</button>
     </form>
   </div>

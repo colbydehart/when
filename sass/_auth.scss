@@ -18,9 +18,4 @@
       @include shift(2);
     }
   }
-  .warning{
-    @include row();
-    text-align:center;
-    color: red;
-  }
 }

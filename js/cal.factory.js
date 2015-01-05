@@ -52,9 +52,9 @@ angular.module('calFactory', [])
     }
     else if (skip === maxSkip){
       result.impossible = true;
-      result.names = result.names.concat(result.unavailable);
+      result.unavailable = result.names.concat(result.unavailable);
       for (var x = 0; x < result.calendar.length; x++) {
-        result.calendar[x].morning = result.calendar[x].night = result.calendar[x].night = false;
+        result.calendar[x].morning = result.calendar[x].noon = result.calendar[x].night = false;
       }
       return result;
     }

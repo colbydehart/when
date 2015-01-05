@@ -247,6 +247,14 @@ footer {
 .highlight {
   color: #BA5A11; }
 
+.warning {
+  display: block;
+  color: #f55; }
+  .warning:after {
+    content: "";
+    display: table;
+    clear: both; }
+
 .content {
   margin-top: 120px;
   margin-bottom: 50px; }
@@ -430,14 +438,6 @@ footer {
         margin-left: 17.05961%; }
         #auth button:last-child {
           margin-right: 0; } }
-  #auth .warning {
-    display: block;
-    text-align: center;
-    color: red; }
-    #auth .warning:after {
-      content: "";
-      display: table;
-      clear: both; }
 
 .table-borders {
   border: 1px solid #DDD;
