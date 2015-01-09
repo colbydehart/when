@@ -104,7 +104,7 @@ angular.module('calFactory', [])
     var parts = event.participants,
         len = parts.length,
         skipTemp = skip,
-        maxSkip = (len*(len+1))/2 - 4,
+        maxSkip = (len*(len+1))/2 - 4 >= 0 ? (len*(len+1))/2 - 4 : 0,
         result = {
           names : [],
           unavailable : [],
@@ -134,7 +134,7 @@ angular.module('calFactory', [])
     }
     result.emails = result.emails.join(',');
 
-    if(availableDates(result.calendar) && result.names.length > 1){
+    if(availableDates(result.calendar) && (result.names.length > 1 || event.participants.length === 1)){
       return result;
     }
     else if (skip === maxSkip){
