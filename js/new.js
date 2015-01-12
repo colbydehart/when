@@ -23,6 +23,7 @@ angular.module('new', ['ngRoute', 'calFactory'])
   $scope.createEvent = function() {
     e.calendar = cal.newCal($scope.start, $scope.end);
     e.owner = $rootScope.user.uid;
+    e.participants = {}
     data.addEvent(e, function(id) {
       $location.path('event/' + id);
       $scope.$apply();
