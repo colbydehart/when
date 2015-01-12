@@ -288,6 +288,14 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
 
     update : function(id, event) {
       return $firebase(new Firebase(url+'events')).$update(id, event);
+    },
+
+    updateName : function  (id, name) {
+      var userSync = $firebase(new Firebase(url+'users/'+$rootScope.user.uid)),
+          obj = {};
+      obj[id] = name;
+
+      return userSync.$update(obj);
     }
   };
 }]);
@@ -324,7 +332,14 @@ angular.module('edit', ['ngRoute', 'dataFactory', 'calFactory'])
   });
 
   $scope.editName = function(e) {
+    var temp = $scope.event.name;
     $scope.event.name = prompt('Enter a new name for the event', $scope.event.name) || $scope.event.name;
+    data.updateName($routeParams.id, $scope.event.name).catch(function (err) {
+      $scope.event.name = temp;
+      console.log(err);
+    }).then(function (ref) {
+      console.log(ref.key());
+    })
   };
 
   var showing = false;

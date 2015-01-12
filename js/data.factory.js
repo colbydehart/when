@@ -82,6 +82,14 @@ angular.module('dataFactory', ['authFactory', 'firebase'])
 
     update : function(id, event) {
       return $firebase(new Firebase(url+'events')).$update(id, event);
+    },
+
+    updateName : function  (id, name) {
+      var userSync = $firebase(new Firebase(url+'users/'+$rootScope.user.uid)),
+          obj = {};
+      obj[id] = name;
+
+      return userSync.$update(obj);
     }
   };
 }]);
