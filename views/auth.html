@@ -1,0 +1,40 @@
+<div id="auth">
+  <div class="warning" ng-if="error">{{error.message}}</div>
+  <form ng-submit="authForm.$valid && submit()"
+        name='authForm'
+        novalidate>
+    <div class="input">
+      <label>Email</label>
+      <input type="email" ng-model='user.email' name="email" required>
+      <div class="warning" ng-show="authForm.email.$error.email && authForm.$dirty">
+        Not a valid email.
+      </div>
+      <div class="warning" ng-show="authForm.email.$error.required && authForm.email.$dirty">
+        Email is required
+      </div>
+    </div>
+    <div class="input">
+      <label>Password</label>
+      <input type="password" ng-model='user.password' required name="password">
+      <div class="warning" ng-show="authForm.password.$error.required && authForm.password.$dirty">
+        You have to enter a password.
+      </div>
+    </div>
+    <div class="forgot">
+      <a href="#" ng-click="resetPassword($event)" ng-show="method === 'login' && user.email && !user.password">
+        Forgot your password?
+      </a>
+    </div>
+    <div class="input" ng-show="method === 'register'">
+      <label>Repeat password</label>
+      <input type="password" ng-model='passwordRepeat' name="password2">
+      <div class="warning" ng-show="authForm.password2.$error.required && authForm.password2.$dirty">
+        Please repeat the password.
+      </div>
+      <div ng-show="user.password !== passwordRepeat && authForm.password2.$dirty" class="warning">
+        Passwords must match
+      </div>
+    </div>
+    <button type="submit" ng-disabled="authForm.$invalid">Submit</button>
+  </form>
+</div>
