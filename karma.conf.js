@@ -18,16 +18,16 @@ module.exports = function(config) {
     },
     // list of files / patterns to load in the browser
     files: [
-      'app/vendor/lodash/dist/lodash.min.js',
-      'app/vendor/jquery/dist/jquery.min.js',
-      'app/vendor/firebase/firebase.js',
-      'app/vendor/angular/angular.js',
-      'app/vendor/angular-touch/angular-touch.min.js',
-      'app/vendor/angularfire/dist/angularfire.min.js',
-      'app/vendor/angular-route/angular-route.js',
-      'app/vendor/angular-mocks/angular-mocks.js',
-      'app/js/*.js',
-      'test/*.spec.js'
+      'public/vendor/lodash/dist/lodash.min.js',
+      'public/vendor/jquery/dist/jquery.min.js',
+      'public/vendor/firebase/firebase.js',
+      'public/vendor/angular/angular.js',
+      'public/vendor/angular-touch/angular-touch.min.js',
+      'public/vendor/angularfire/dist/angularfire.min.js',
+      'public/vendor/angular-route/angular-route.js',
+      'public/vendor/angular-mocks/angular-mocks.js',
+      'public/js/*.js',
+      'client/test/*.spec.js'
     ],
 
 

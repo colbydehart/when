@@ -2,3 +2,4 @@ node_modules
 app/vendor
 coverage/
 *.swp
+.tern-project
