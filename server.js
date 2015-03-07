@@ -3,8 +3,10 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 app.get('/', function(req, res){
-    res.send("Hi");
+    res.sendFile(__dirname + "/public/index.html")
 });
+
+app.use(express.static('public'));
 
 app.listen(8000, function(){ console.log("we runnin'");});
 

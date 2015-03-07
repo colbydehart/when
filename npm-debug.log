@@ -1,9 +1,13 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'express' ]
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--global',
+1 verbose cli   'nodemon' ]
 2 info using npm@1.4.28
 3 info using node@v1.3.0
-4 verbose cache add [ 'express', null ]
-5 verbose cache add name=undefined spec="express" args=["express",null]
+4 verbose cache add [ 'nodemon', null ]
+5 verbose cache add name=undefined spec="nodemon" args=["nodemon",null]
 6 verbose parsed url { protocol: null,
 6 verbose parsed url   slashes: null,
 6 verbose parsed url   auth: null,
@@ -13,406 +17,244 @@
 6 verbose parsed url   hash: null,
 6 verbose parsed url   search: null,
 6 verbose parsed url   query: null,
-6 verbose parsed url   pathname: 'express',
-6 verbose parsed url   path: 'express',
-6 verbose parsed url   href: 'express' }
-7 silly lockFile f3c62de4-express express
-8 verbose lock express /home/colby/.npm/f3c62de4-express.lock
-9 silly lockFile f3c62de4-express express
-10 silly lockFile f3c62de4-express express
-11 verbose addNamed [ 'express', '' ]
+6 verbose parsed url   pathname: 'nodemon',
+6 verbose parsed url   path: 'nodemon',
+6 verbose parsed url   href: 'nodemon' }
+7 silly lockFile 1625b929-nodemon nodemon
+8 verbose lock nodemon /home/colby/.npm/1625b929-nodemon.lock
+9 silly lockFile 1625b929-nodemon nodemon
+10 silly lockFile 1625b929-nodemon nodemon
+11 verbose addNamed [ 'nodemon', '' ]
 12 verbose addNamed [ null, '*' ]
-13 silly lockFile 64a534c1-express express@
-14 verbose lock express@ /home/colby/.npm/64a534c1-express.lock
-15 silly addNameRange { name: 'express', range: '*', hasData: false }
-16 verbose request where is /express
+13 silly lockFile 4f5e51c6-nodemon nodemon@
+14 verbose lock nodemon@ /home/colby/.npm/4f5e51c6-nodemon.lock
+15 silly addNameRange { name: 'nodemon', range: '*', hasData: false }
+16 verbose request where is /nodemon
 17 verbose request registry https://registry.npmjs.org/
-18 verbose request id 34b15ba61ee6ac59
-19 verbose url raw /express
-20 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
-21 verbose url resolved https://registry.npmjs.org/express
-22 verbose request where is https://registry.npmjs.org/express
-23 info trying registry request attempt 1 at 15:45:29
-24 http GET https://registry.npmjs.org/express
-25 http 200 https://registry.npmjs.org/express
+18 verbose request id d5eed3f7b511b34f
+19 verbose url raw /nodemon
+20 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
+21 verbose url resolved https://registry.npmjs.org/nodemon
+22 verbose request where is https://registry.npmjs.org/nodemon
+23 info trying registry request attempt 1 at 18:06:33
+24 http GET https://registry.npmjs.org/nodemon
+25 http 200 https://registry.npmjs.org/nodemon
 26 silly registry.get cb [ 200,
-26 silly registry.get   { date: 'Wed, 04 Mar 2015 21:45:30 GMT',
+26 silly registry.get   { date: 'Sat, 07 Mar 2015 00:06:34 GMT',
 26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-26 silly registry.get     etag: '"3DKQRAO4JTYQJR1PW7V0RFXBD"',
+26 silly registry.get     etag: '"1ZR7C6ZY9FQ9KFI9GGWLINEPJ"',
 26 silly registry.get     'content-type': 'application/json',
 26 silly registry.get     'cache-control': 'max-age=60',
-26 silly registry.get     'content-length': '485647',
+26 silly registry.get     'content-length': '147332',
 26 silly registry.get     'accept-ranges': 'bytes',
 26 silly registry.get     via: '1.1 varnish',
-26 silly registry.get     age: '57',
-26 silly registry.get     'x-served-by': 'cache-atl6232-ATL',
+26 silly registry.get     age: '39',
+26 silly registry.get     'x-served-by': 'cache-iad2139-IAD',
 26 silly registry.get     'x-cache': 'HIT',
-26 silly registry.get     'x-cache-hits': '2',
-26 silly registry.get     'x-timer': 'S1425505530.567553,VS0,VE0',
+26 silly registry.get     'x-cache-hits': '3',
+26 silly registry.get     'x-timer': 'S1425686794.501160,VS0,VE0',
 26 silly registry.get     vary: 'Accept',
 26 silly registry.get     connection: 'close' } ]
-27 silly addNameRange number 2 { name: 'express', range: '*', hasData: true }
-28 silly addNameRange versions [ 'express',
-28 silly addNameRange   [ '0.14.0',
-28 silly addNameRange     '0.14.1',
+27 silly addNameRange number 2 { name: 'nodemon', range: '*', hasData: true }
+28 silly addNameRange versions [ 'nodemon',
+28 silly addNameRange   [ '0.1.4',
+28 silly addNameRange     '0.1.5',
+28 silly addNameRange     '0.1.6',
+28 silly addNameRange     '0.1.7',
+28 silly addNameRange     '0.1.8',
+28 silly addNameRange     '0.2.0',
+28 silly addNameRange     '0.2.1',
+28 silly addNameRange     '0.2.2',
+28 silly addNameRange     '0.3.0',
+28 silly addNameRange     '0.3.1',
+28 silly addNameRange     '0.3.2',
+28 silly addNameRange     '0.4.0',
+28 silly addNameRange     '0.4.1',
+28 silly addNameRange     '0.5.0',
+28 silly addNameRange     '0.5.1',
+28 silly addNameRange     '0.5.2',
+28 silly addNameRange     '0.5.3',
+28 silly addNameRange     '0.5.4',
+28 silly addNameRange     '0.5.5',
+28 silly addNameRange     '0.5.6',
+28 silly addNameRange     '0.5.7',
+28 silly addNameRange     '0.6.0',
+28 silly addNameRange     '0.6.1',
+28 silly addNameRange     '0.6.2',
+28 silly addNameRange     '0.6.3',
+28 silly addNameRange     '0.6.4',
+28 silly addNameRange     '0.6.5',
+28 silly addNameRange     '0.6.6',
+28 silly addNameRange     '0.6.7',
+28 silly addNameRange     '0.6.8',
+28 silly addNameRange     '0.6.9',
+28 silly addNameRange     '0.6.10',
+28 silly addNameRange     '0.6.11',
+28 silly addNameRange     '0.6.12',
+28 silly addNameRange     '0.6.13',
+28 silly addNameRange     '0.6.14',
+28 silly addNameRange     '0.6.15',
+28 silly addNameRange     '0.6.16',
+28 silly addNameRange     '0.6.17',
+28 silly addNameRange     '0.6.18',
+28 silly addNameRange     '0.6.19',
+28 silly addNameRange     '0.6.20',
+28 silly addNameRange     '0.6.21',
+28 silly addNameRange     '0.6.22',
+28 silly addNameRange     '0.6.23',
+28 silly addNameRange     '0.7.0',
+28 silly addNameRange     '0.7.1',
+28 silly addNameRange     '0.7.2',
+28 silly addNameRange     '0.7.3',
+28 silly addNameRange     '0.7.4',
+28 silly addNameRange     '0.7.5',
+28 silly addNameRange     '0.7.6',
+28 silly addNameRange     '0.7.7',
+28 silly addNameRange     '0.7.8',
+28 silly addNameRange     '0.7.10',
+28 silly addNameRange     '0.9.0',
+28 silly addNameRange     '0.9.1',
+28 silly addNameRange     '0.9.2',
+28 silly addNameRange     '0.9.3',
+28 silly addNameRange     '0.9.5',
+28 silly addNameRange     '0.9.6',
+28 silly addNameRange     '0.9.7',
+28 silly addNameRange     '0.9.10',
+28 silly addNameRange     '0.9.11',
+28 silly addNameRange     '0.9.12',
+28 silly addNameRange     '0.9.14',
+28 silly addNameRange     '0.9.16',
+28 silly addNameRange     '0.9.17',
 28 silly addNameRange     '1.0.0',
 28 silly addNameRange     '1.0.1',
 28 silly addNameRange     '1.0.2',
+28 silly addNameRange     '1.0.2-rc',
+28 silly addNameRange     '0.6.10-a',
+28 silly addNameRange     '1.0.2-rc3',
+28 silly addNameRange     '1.0.2-rc4',
 28 silly addNameRange     '1.0.3',
 28 silly addNameRange     '1.0.4',
 28 silly addNameRange     '1.0.5',
 28 silly addNameRange     '1.0.6',
 28 silly addNameRange     '1.0.7',
 28 silly addNameRange     '1.0.8',
-28 silly addNameRange     '2.0.0',
-28 silly addNameRange     '2.1.0',
-28 silly addNameRange     '2.1.1',
-28 silly addNameRange     '2.2.0',
-28 silly addNameRange     '2.2.1',
-28 silly addNameRange     '2.2.2',
-28 silly addNameRange     '2.3.0',
-28 silly addNameRange     '2.3.1',
-28 silly addNameRange     '2.3.2',
-28 silly addNameRange     '2.3.3',
-28 silly addNameRange     '2.3.4',
-28 silly addNameRange     '2.3.5',
-28 silly addNameRange     '2.3.6',
-28 silly addNameRange     '2.3.7',
-28 silly addNameRange     '2.3.8',
-28 silly addNameRange     '2.3.9',
-28 silly addNameRange     '2.3.10',
-28 silly addNameRange     '2.3.11',
-28 silly addNameRange     '2.3.12',
-28 silly addNameRange     '2.4.0',
-28 silly addNameRange     '2.4.1',
-28 silly addNameRange     '2.4.2',
-28 silly addNameRange     '2.4.3',
-28 silly addNameRange     '2.4.4',
-28 silly addNameRange     '2.4.5',
-28 silly addNameRange     '2.4.6',
-28 silly addNameRange     '2.4.7',
-28 silly addNameRange     '2.5.0',
-28 silly addNameRange     '2.5.1',
-28 silly addNameRange     '2.5.2',
-28 silly addNameRange     '2.5.3',
-28 silly addNameRange     '2.5.4',
-28 silly addNameRange     '2.5.5',
-28 silly addNameRange     '2.5.6',
-28 silly addNameRange     '2.5.7',
-28 silly addNameRange     '2.5.8',
-28 silly addNameRange     '2.5.9',
-28 silly addNameRange     '2.5.10',
-28 silly addNameRange     '2.5.11',
-28 silly addNameRange     '3.0.0',
-28 silly addNameRange     '3.0.1',
-28 silly addNameRange     '3.0.2',
-28 silly addNameRange     '3.0.3',
-28 silly addNameRange     '3.0.4',
-28 silly addNameRange     '3.0.5',
-28 silly addNameRange     '3.0.6',
-28 silly addNameRange     '3.1.0',
-28 silly addNameRange     '3.1.1',
-28 silly addNameRange     '3.1.2',
-28 silly addNameRange     '3.2.0',
-28 silly addNameRange     '3.2.1',
-28 silly addNameRange     '3.2.2',
-28 silly addNameRange     '3.2.3',
-28 silly addNameRange     '3.2.4',
-28 silly addNameRange     '3.2.5',
-28 silly addNameRange     '3.2.6',
-28 silly addNameRange     '3.3.0',
-28 silly addNameRange     '3.3.1',
-28 silly addNameRange     '3.3.2',
-28 silly addNameRange     '3.3.3',
-28 silly addNameRange     '3.3.4',
-28 silly addNameRange     '3.3.5',
-28 silly addNameRange     '3.3.6',
-28 silly addNameRange     '1.0.0-beta',
-28 silly addNameRange     '1.0.0-beta2',
-28 silly addNameRange     '1.0.0-rc',
-28 silly addNameRange     '1.0.0-rc2',
-28 silly addNameRange     '1.0.0-rc3',
-28 silly addNameRange     '1.0.0-rc4',
-28 silly addNameRange     '2.0.0-beta',
-28 silly addNameRange     '2.0.0-beta2',
-28 silly addNameRange     '2.0.0-beta3',
-28 silly addNameRange     '2.0.0-rc',
-28 silly addNameRange     '2.0.0-rc2',
-28 silly addNameRange     '2.0.0-rc3',
-28 silly addNameRange     '3.0.0-alpha1',
-28 silly addNameRange     '3.0.0-alpha2',
-28 silly addNameRange     '3.0.0-alpha3',
-28 silly addNameRange     '3.0.0-alpha4',
-28 silly addNameRange     '3.0.0-alpha5',
-28 silly addNameRange     '3.0.0-beta1',
-28 silly addNameRange     '3.0.0-beta2',
-28 silly addNameRange     '3.0.0-beta3',
-28 silly addNameRange     '3.0.0-beta4',
-28 silly addNameRange     '3.0.0-beta6',
-28 silly addNameRange     '3.0.0-beta7',
-28 silly addNameRange     '3.0.0-rc1',
-28 silly addNameRange     '3.0.0-rc2',
-28 silly addNameRange     '3.0.0-rc3',
-28 silly addNameRange     '3.0.0-rc4',
-28 silly addNameRange     '3.0.0-rc5',
-28 silly addNameRange     '3.3.7',
-28 silly addNameRange     '3.3.8',
-28 silly addNameRange     '3.4.0',
-28 silly addNameRange     '3.4.1',
-28 silly addNameRange     '3.4.2',
-28 silly addNameRange     '3.4.3',
-28 silly addNameRange     '3.4.4',
-28 silly addNameRange     '3.4.5',
-28 silly addNameRange     '3.4.6',
-28 silly addNameRange     '3.4.7',
-28 silly addNameRange     '3.4.8',
-28 silly addNameRange     '4.0.0-rc1',
-28 silly addNameRange     '4.0.0-rc2',
-28 silly addNameRange     '3.5.0',
-28 silly addNameRange     '4.0.0-rc3',
-28 silly addNameRange     '4.0.0-rc4',
-28 silly addNameRange     '3.5.1',
-28 silly addNameRange     '4.0.0',
-28 silly addNameRange     '3.5.2',
-28 silly addNameRange     '4.1.0',
-28 silly addNameRange     '4.1.1',
-28 silly addNameRange     '3.5.3',
-28 silly addNameRange     '4.1.2',
-28 silly addNameRange     '3.6.0',
-28 silly addNameRange     '4.2.0',
-28 silly addNameRange     '3.7.0',
-28 silly addNameRange     '3.8.0',
-28 silly addNameRange     '4.3.0',
-28 silly addNameRange     '4.3.1',
-28 silly addNameRange     '3.8.1',
-28 silly addNameRange     '4.3.2',
-28 silly addNameRange     '3.9.0',
-28 silly addNameRange     '4.4.0',
-28 silly addNameRange     '4.4.1',
-28 silly addNameRange     '3.10.0',
-28 silly addNameRange     '3.10.1',
-28 silly addNameRange     '3.10.2',
-28 silly addNameRange     '3.10.3',
-28 silly addNameRange     '3.10.4',
-28 silly addNameRange     '4.4.2',
-28 silly addNameRange     '3.10.5',
-28 silly addNameRange     '4.4.3',
-28 silly addNameRange     '3.11.0',
-28 silly addNameRange     '4.4.4',
-28 silly addNameRange     '3.12.0',
-28 silly addNameRange     '3.12.1',
-28 silly addNameRange     '4.4.5',
-28 silly addNameRange     '3.13.0',
-28 silly addNameRange     '4.5.0',
-28 silly addNameRange     '4.5.1',
-28 silly addNameRange     '3.14.0',
-28 silly addNameRange     '4.6.0',
-28 silly addNameRange     '4.6.1',
-28 silly addNameRange     '3.15.0',
-28 silly addNameRange     '4.7.0',
-28 silly addNameRange     '3.15.1',
-28 silly addNameRange     '4.7.1',
-28 silly addNameRange     '3.15.2',
-28 silly addNameRange     '4.7.2',
-28 silly addNameRange     '4.7.3',
-28 silly addNameRange     '3.15.3',
-28 silly addNameRange     '4.7.4',
-28 silly addNameRange     '3.16.0',
-28 silly addNameRange     '4.8.0',
-28 silly addNameRange     '3.16.1',
-28 silly addNameRange     '4.8.1',
-28 silly addNameRange     '3.16.2',
-28 silly addNameRange     '4.8.2',
-28 silly addNameRange     '3.16.3',
-28 silly addNameRange     '3.16.4',
-28 silly addNameRange     '4.8.3',
-28 silly addNameRange     '3.16.5',
-28 silly addNameRange     '3.16.6',
-28 silly addNameRange     '4.8.4',
-28 silly addNameRange     '3.16.7',
-28 silly addNameRange     '4.8.5',
-28 silly addNameRange     '3.16.8',
-28 silly addNameRange     '4.8.6',
-28 silly addNameRange     '3.16.9',
-28 silly addNameRange     '4.8.7',
-28 silly addNameRange     '3.16.10',
-28 silly addNameRange     '4.8.8',
-28 silly addNameRange     '3.17.0',
-28 silly addNameRange     '3.17.1',
-28 silly addNameRange     '4.9.0',
-28 silly addNameRange     '3.17.2',
-28 silly addNameRange     '4.9.1',
-28 silly addNameRange     '4.9.2',
-28 silly addNameRange     '3.17.3',
-28 silly addNameRange     '4.9.3',
-28 silly addNameRange     '3.17.4',
-28 silly addNameRange     '4.9.4',
-28 silly addNameRange     '3.17.5',
-28 silly addNameRange     '4.9.5',
-28 silly addNameRange     '3.17.6',
-28 silly addNameRange     '3.17.7',
-28 silly addNameRange     '4.9.6',
-28 silly addNameRange     '4.9.7',
-28 silly addNameRange     '3.17.8',
-28 silly addNameRange     '4.9.8',
-28 silly addNameRange     '3.18.0',
-28 silly addNameRange     '3.18.1',
-28 silly addNameRange     '4.10.0',
-28 silly addNameRange     '3.18.2',
-28 silly addNameRange     '4.10.1',
-28 silly addNameRange     '5.0.0-alpha.1',
-28 silly addNameRange     '3.18.3',
-28 silly addNameRange     '4.10.2',
-28 silly addNameRange     '3.18.4',
-28 silly addNameRange     '4.10.3',
-28 silly addNameRange     '4.10.4',
-28 silly addNameRange     '4.10.5',
-28 silly addNameRange     '3.18.5',
-28 silly addNameRange     '3.18.6',
-28 silly addNameRange     '4.10.6',
-28 silly addNameRange     '4.10.7',
-28 silly addNameRange     '3.19.0',
-28 silly addNameRange     '4.10.8',
-28 silly addNameRange     '4.11.0',
-28 silly addNameRange     '3.19.1',
-28 silly addNameRange     '4.11.1',
-28 silly addNameRange     '3.19.2',
-28 silly addNameRange     '4.11.2',
-28 silly addNameRange     '3.20.0',
-28 silly addNameRange     '4.12.0',
-28 silly addNameRange     '3.20.1',
-28 silly addNameRange     '4.12.1',
-28 silly addNameRange     '4.12.2' ] ]
-29 verbose addNamed [ 'express', '4.12.2' ]
-30 verbose addNamed [ '4.12.2', '4.12.2' ]
-31 silly lockFile a2d0019d-express-4-12-2 express@4.12.2
-32 verbose lock express@4.12.2 /home/colby/.npm/a2d0019d-express-4-12-2.lock
-33 silly lockFile c80c21a4-s-org-express-express-4-12-2-tgz https://registry.npmjs.org/express/-/express-4.12.2.tgz
-34 verbose lock https://registry.npmjs.org/express/-/express-4.12.2.tgz /home/colby/.npm/c80c21a4-s-org-express-express-4-12-2-tgz.lock
-35 verbose addRemoteTarball [ 'https://registry.npmjs.org/express/-/express-4.12.2.tgz',
-35 verbose addRemoteTarball   '7e72ad4c1b4edf07536a6d1e2acec0161d8564bd' ]
-36 info retry fetch attempt 1 at 15:45:30
-37 verbose fetch to= /tmp/npm-3761-5V-h7JO6/registry.npmjs.org/express/-/express-4.12.2.tgz
-38 http GET https://registry.npmjs.org/express/-/express-4.12.2.tgz
-39 http 200 https://registry.npmjs.org/express/-/express-4.12.2.tgz
-40 silly lockFile c80c21a4-s-org-express-express-4-12-2-tgz https://registry.npmjs.org/express/-/express-4.12.2.tgz
-41 silly lockFile c80c21a4-s-org-express-express-4-12-2-tgz https://registry.npmjs.org/express/-/express-4.12.2.tgz
-42 silly lockFile a2d0019d-express-4-12-2 express@4.12.2
-43 silly lockFile a2d0019d-express-4-12-2 express@4.12.2
-44 silly lockFile 64a534c1-express express@
-45 silly lockFile 64a534c1-express express@
-46 silly resolved [ { name: 'express',
-46 silly resolved     description: 'Fast, unopinionated, minimalist web framework',
-46 silly resolved     version: '4.12.2',
-46 silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
-46 silly resolved     contributors:
-46 silly resolved      [ [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object] ],
-46 silly resolved     license: 'MIT',
-46 silly resolved     repository: { type: 'git', url: 'https://github.com/strongloop/express' },
-46 silly resolved     homepage: 'http://expressjs.com/',
+28 silly addNameRange     '1.0.9',
+28 silly addNameRange     '1.0.10',
+28 silly addNameRange     '1.0.11',
+28 silly addNameRange     '1.0.12',
+28 silly addNameRange     '1.0.13',
+28 silly addNameRange     '1.0.14',
+28 silly addNameRange     '1.0.15',
+28 silly addNameRange     '1.0.16',
+28 silly addNameRange     '1.0.17-rc1',
+28 silly addNameRange     '1.0.17-rc2',
+28 silly addNameRange     '1.0.17',
+28 silly addNameRange     '1.0.18',
+28 silly addNameRange     '1.0.19',
+28 silly addNameRange     '1.0.20',
+28 silly addNameRange     '1.1.0-alpha',
+28 silly addNameRange     '1.1.0',
+28 silly addNameRange     '1.1.1',
+28 silly addNameRange     '1.2.0',
+28 silly addNameRange     '1.2.1',
+28 silly addNameRange     '1.3.0-0',
+28 silly addNameRange     '1.3.0-1',
+28 silly addNameRange     '1.3.0-2',
+28 silly addNameRange     '1.3.0-3',
+28 silly addNameRange     '1.3.0-4',
+28 silly addNameRange     '1.3.0-5',
+28 silly addNameRange     '1.3.0-6',
+28 silly addNameRange     '1.3.0-7',
+28 silly addNameRange     '1.3.0',
+28 silly addNameRange     '1.3.1',
+28 silly addNameRange     '1.3.2',
+28 silly addNameRange     '1.3.3',
+28 silly addNameRange     '1.3.5',
+28 silly addNameRange     '1.3.6',
+28 silly addNameRange     '1.3.7' ] ]
+29 verbose addNamed [ 'nodemon', '1.3.7' ]
+30 verbose addNamed [ '1.3.7', '1.3.7' ]
+31 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+32 verbose lock nodemon@1.3.7 /home/colby/.npm/fec6bbf0-nodemon-1-3-7.lock
+33 silly lockFile bcea1563-js-org-nodemon-nodemon-1-3-7-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+34 verbose lock https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz /home/colby/.npm/bcea1563-js-org-nodemon-nodemon-1-3-7-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz',
+35 verbose addRemoteTarball   '447bc2e01bf499cbf5853f9937496e0a04835449' ]
+36 info retry fetch attempt 1 at 18:06:34
+37 verbose fetch to= /tmp/npm-4528-zP89iR85/registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+38 http GET https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+39 http 200 https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+40 silly lockFile bcea1563-js-org-nodemon-nodemon-1-3-7-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+41 silly lockFile bcea1563-js-org-nodemon-nodemon-1-3-7-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz
+42 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+43 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+44 silly lockFile 4f5e51c6-nodemon nodemon@
+45 silly lockFile 4f5e51c6-nodemon nodemon@
+46 silly resolved [ { name: 'nodemon',
+46 silly resolved     homepage: 'http://nodemon.io',
+46 silly resolved     author: { name: 'Remy Sharp', url: 'http://github.com/remy' },
+46 silly resolved     bin: { nodemon: './bin/nodemon.js' },
+46 silly resolved     engines: { node: '>=0.8' },
+46 silly resolved     repository: { type: 'git', url: 'http://github.com/remy/nodemon.git' },
+46 silly resolved     description: 'Simple monitor script for use during development of a node.js app.',
 46 silly resolved     keywords:
-46 silly resolved      [ 'express',
-46 silly resolved        'framework',
-46 silly resolved        'sinatra',
-46 silly resolved        'web',
-46 silly resolved        'rest',
-46 silly resolved        'restful',
-46 silly resolved        'router',
-46 silly resolved        'app',
-46 silly resolved        'api' ],
-46 silly resolved     dependencies:
-46 silly resolved      { accepts: '~1.2.4',
-46 silly resolved        'content-disposition': '0.5.0',
-46 silly resolved        'content-type': '~1.0.1',
-46 silly resolved        'cookie-signature': '1.0.6',
-46 silly resolved        debug: '~2.1.1',
-46 silly resolved        depd: '~1.0.0',
-46 silly resolved        'escape-html': '1.0.1',
-46 silly resolved        etag: '~1.5.1',
-46 silly resolved        finalhandler: '0.3.3',
-46 silly resolved        fresh: '0.2.4',
-46 silly resolved        'merge-descriptors': '1.0.0',
-46 silly resolved        methods: '~1.1.1',
-46 silly resolved        'on-finished': '~2.2.0',
-46 silly resolved        parseurl: '~1.3.0',
-46 silly resolved        'path-to-regexp': '0.1.3',
-46 silly resolved        'proxy-addr': '~1.0.6',
-46 silly resolved        qs: '2.3.3',
-46 silly resolved        'range-parser': '~1.0.2',
-46 silly resolved        send: '0.12.1',
-46 silly resolved        'serve-static': '~1.9.1',
-46 silly resolved        'type-is': '~1.6.0',
-46 silly resolved        vary: '~1.0.0',
-46 silly resolved        cookie: '0.1.2',
-46 silly resolved        'utils-merge': '1.0.0' },
-46 silly resolved     devDependencies:
-46 silly resolved      { after: '0.8.1',
-46 silly resolved        ejs: '2.3.1',
-46 silly resolved        istanbul: '0.3.6',
-46 silly resolved        marked: '0.3.3',
-46 silly resolved        mocha: '~2.1.0',
-46 silly resolved        should: '~5.0.1',
-46 silly resolved        supertest: '~0.15.0',
-46 silly resolved        'body-parser': '~1.12.0',
-46 silly resolved        'connect-redis': '~2.2.0',
-46 silly resolved        'cookie-parser': '~1.3.4',
-46 silly resolved        'express-session': '~1.10.3',
-46 silly resolved        jade: '~1.9.2',
-46 silly resolved        'method-override': '~2.3.1',
-46 silly resolved        morgan: '~1.5.1',
-46 silly resolved        multiparty: '~4.1.1',
-46 silly resolved        vhost: '~3.0.0' },
-46 silly resolved     engines: { node: '>= 0.10.0' },
-46 silly resolved     files: [ 'LICENSE', 'History.md', 'Readme.md', 'index.js', 'lib/' ],
+46 silly resolved      [ 'monitor',
+46 silly resolved        'development',
+46 silly resolved        'restart',
+46 silly resolved        'autoload',
+46 silly resolved        'reload',
+46 silly resolved        'terminal' ],
+46 silly resolved     version: '1.3.7',
+46 silly resolved     preferGlobal: 'true',
+46 silly resolved     licenses: [ [Object] ],
+46 silly resolved     main: './lib/nodemon',
 46 silly resolved     scripts:
-46 silly resolved      { test: 'mocha --require test/support/env --reporter spec --bail --check-leaks test/ test/acceptance/',
-46 silly resolved        'test-ci': 'istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/ test/acceptance/',
-46 silly resolved        'test-cov': 'istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/ test/acceptance/',
-46 silly resolved        'test-tap': 'mocha --require test/support/env --reporter tap --check-leaks test/ test/acceptance/' },
-46 silly resolved     gitHead: 'dee9fbbbda2f2483c657cf912f68db1a5ba1fcac',
-46 silly resolved     bugs: { url: 'https://github.com/strongloop/express/issues' },
-46 silly resolved     _id: 'express@4.12.2',
-46 silly resolved     _shasum: '7e72ad4c1b4edf07536a6d1e2acec0161d8564bd',
-46 silly resolved     _from: 'express@',
+46 silly resolved      { coverage: 'istanbul cover _mocha -- --timeout 30000 --ui bdd --reporter list test/**/*.test.js',
+46 silly resolved        ':test': 'mocha --timeout 30000 --ui bdd test/**/*.test.js',
+46 silly resolved        test: 'for FILE in test/**/*.test.js; do echo $FILE; ./node_modules/.bin/mocha --timeout 30000 $FILE; if [ $? -ne 0 ]; then exit 1; fi; sleep 1; done',
+46 silly resolved        web: 'node web' },
+46 silly resolved     devDependencies:
+46 silly resolved      { 'coffee-script': '~1.7.1',
+46 silly resolved        connect: '~2.19.1',
+46 silly resolved        istanbul: '~0.2.10',
+46 silly resolved        mocha: '^2.0.1',
+46 silly resolved        should: '~4.0.0' },
+46 silly resolved     dependencies:
+46 silly resolved      { minimatch: '~0.3.0',
+46 silly resolved        'ps-tree': '~0.0.3',
+46 silly resolved        touch: '~0.0.3',
+46 silly resolved        'update-notifier': '^0.3.0' },
+46 silly resolved     gitHead: 'ceb53ce403f7b5a39ba4c133f73fe780e472209e',
+46 silly resolved     bugs: { url: 'https://github.com/remy/nodemon/issues' },
+46 silly resolved     _id: 'nodemon@1.3.7',
+46 silly resolved     _shasum: '447bc2e01bf499cbf5853f9937496e0a04835449',
+46 silly resolved     _from: 'nodemon@',
 46 silly resolved     _npmVersion: '1.4.28',
-46 silly resolved     _npmUser: { name: 'dougwilson', email: 'doug@somethingdoug.com' },
-46 silly resolved     maintainers:
-46 silly resolved      [ [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object] ],
+46 silly resolved     _npmUser: { name: 'remy', email: 'remy@remysharp.com' },
+46 silly resolved     maintainers: [ [Object] ],
 46 silly resolved     dist:
-46 silly resolved      { shasum: '7e72ad4c1b4edf07536a6d1e2acec0161d8564bd',
-46 silly resolved        tarball: 'http://registry.npmjs.org/express/-/express-4.12.2.tgz' },
+46 silly resolved      { shasum: '447bc2e01bf499cbf5853f9937496e0a04835449',
+46 silly resolved        tarball: 'http://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz' },
 46 silly resolved     directories: {},
-46 silly resolved     _resolved: 'https://registry.npmjs.org/express/-/express-4.12.2.tgz' } ]
-47 info install express@4.12.2 into /usr/lib
-48 info installOne express@4.12.2
-49 verbose lib/node_modules/express unbuild
-50 verbose tar unpack /home/colby/.npm/express/4.12.2/package.tgz
-51 silly lockFile ce544511-tar-usr-lib-node-modules-express tar:///usr/lib/node_modules/express
-52 verbose lock tar:///usr/lib/node_modules/express /home/colby/.npm/ce544511-tar-usr-lib-node-modules-express.lock
-53 silly lockFile ffd6c57f-y-npm-express-4-12-2-package-tgz tar:///home/colby/.npm/express/4.12.2/package.tgz
-54 verbose lock tar:///home/colby/.npm/express/4.12.2/package.tgz /home/colby/.npm/ffd6c57f-y-npm-express-4-12-2-package-tgz.lock
+46 silly resolved     _resolved: 'https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz' } ]
+47 info install nodemon@1.3.7 into /usr/lib
+48 info installOne nodemon@1.3.7
+49 verbose lib/node_modules/nodemon unbuild
+50 verbose tar unpack /home/colby/.npm/nodemon/1.3.7/package.tgz
+51 silly lockFile f069062d-tar-usr-lib-node-modules-nodemon tar:///usr/lib/node_modules/nodemon
+52 verbose lock tar:///usr/lib/node_modules/nodemon /home/colby/.npm/f069062d-tar-usr-lib-node-modules-nodemon.lock
+53 silly lockFile 252c8ce5-by-npm-nodemon-1-3-7-package-tgz tar:///home/colby/.npm/nodemon/1.3.7/package.tgz
+54 verbose lock tar:///home/colby/.npm/nodemon/1.3.7/package.tgz /home/colby/.npm/252c8ce5-by-npm-nodemon-1-3-7-package-tgz.lock
 55 silly gunzTarPerm modes [ '775', '664' ]
-56 error Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/express'
+56 error Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/nodemon'
 56 error     at Error (native)
-56 error  { [Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/express']
+56 error  { [Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/nodemon']
 56 error   errno: -13,
 56 error   code: 'EACCES',
 56 error   syscall: 'mkdir',
-56 error   path: '/usr/lib/node_modules/express',
+56 error   path: '/usr/lib/node_modules/nodemon',
 56 error   fstream_type: 'Directory',
-56 error   fstream_path: '/usr/lib/node_modules/express',
+56 error   fstream_path: '/usr/lib/node_modules/nodemon',
 56 error   fstream_class: 'DirWriter',
 56 error   fstream_stack:
 56 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
@@ -420,18 +262,18 @@
 56 error      'FSReqWrap.oncomplete (fs.js:73:15)' ] }
 57 error Please try running this command again as root/Administrator.
 58 error System Linux 3.16.0-31-generic
-59 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "express"
+59 error command "/usr/bin/node" "/usr/bin/npm" "install" "--global" "nodemon"
 60 error cwd /home/colby/sites/when
 61 error node -v v1.3.0
 62 error npm -v 1.4.28
-63 error path /usr/lib/node_modules/express
+63 error path /usr/lib/node_modules/nodemon
 64 error syscall mkdir
-65 error fstream_path /usr/lib/node_modules/express
+65 error fstream_path /usr/lib/node_modules/nodemon
 66 error fstream_type Directory
 67 error fstream_class DirWriter
 68 error code EACCES
 69 error errno -13
-70 error stack Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/express'
+70 error stack Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/nodemon'
 70 error stack     at Error (native)
 71 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
 71 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53

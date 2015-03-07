@@ -1,5 +1,5 @@
 node_modules
-app/vendor
+public/vendor
 coverage/
 *.swp
 .tern-project
